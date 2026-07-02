@@ -3,557 +3,744 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nœuds &amp; Fils — Bracelets brésiliens sur mesure</title>
+<title>Nœuds &amp; Fils — Bijoux faits main sur mesure</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#EFE7D8;
-    --panel:#FFFDF8;
-    --ink:#241F1C;
-    --ink-soft:#6b6255;
-    --coral:#E85D4C;
-    --teal:#2A9D8F;
-    --mustard:#E9B44C;
-    --plum:#6B4C6B;
-    --navy:#2B3A55;
-    --gold:#C9A227;
-    --line:rgba(36,31,28,0.14);
-    --radius:16px;
-    --shadow:0 10px 30px rgba(36,31,28,0.10);
+    --bg:#F7F1E8; --panel:#FFFFFF; --ink:#26201B; --ink-soft:#7A6F63;
+    --terracotta:#C7816F; --terracotta-dark:#A8654F; --teal:#5B8C82; --mustard:#E3B04B; --navy:#33465C;
+    --line:rgba(38,32,27,0.12); --radius:18px; --shadow:0 14px 34px rgba(38,32,27,0.09);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
-  body{
-    background:
-      radial-gradient(circle at 15% 0%, rgba(232,93,76,0.08), transparent 40%),
-      radial-gradient(circle at 90% 10%, rgba(42,157,143,0.10), transparent 45%),
-      var(--bg);
-    color:var(--ink);
-    font-family:'Space Grotesk', sans-serif;
-    line-height:1.5;
-    min-height:100vh;
-  }
-  h1,h2,h3{font-family:'Fraunces', serif; margin:0 0 .3em 0; font-weight:600;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.55; min-height:100vh;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0 0 .3em 0; font-weight:600; letter-spacing:-.01em;}
   .mono{font-family:'DM Mono', monospace;}
   a{color:var(--navy);}
   button{font-family:inherit;}
  
-  /* ---------- Layout shells ---------- */
-  .site-header{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px; border-bottom:1px solid var(--line);
-    background:rgba(255,253,248,0.7); backdrop-filter:blur(6px);
-    position:sticky; top:0; z-index:20; flex-wrap:wrap; gap:12px;
-  }
+  .site-header{display:flex; align-items:center; justify-content:space-between; padding:16px 34px; border-bottom:1px solid var(--line); background:rgba(247,241,232,0.9); backdrop-filter:blur(6px); position:sticky; top:0; z-index:30; flex-wrap:wrap; gap:12px;}
   .brand{display:flex; align-items:center; gap:10px; cursor:pointer;}
-  .brand-mark{
-    width:34px; height:34px; border-radius:50%;
-    background:conic-gradient(var(--coral),var(--mustard),var(--teal),var(--plum),var(--coral));
-    box-shadow:inset 0 0 0 6px var(--panel);
-  }
-  .brand-name{font-family:'Fraunces', serif; font-weight:700; font-size:1.25rem; letter-spacing:.2px;}
-  .brand-tag{font-size:.72rem; color:var(--ink-soft); letter-spacing:.4px; text-transform:uppercase;}
-  nav.main-nav{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
-  .nav-link{
-    padding:8px 14px; border-radius:999px; font-size:.92rem; cursor:pointer;
-    border:1px solid transparent; color:var(--ink); text-decoration:none;
-  }
-  .nav-link:hover{background:rgba(36,31,28,0.06);}
-  .nav-link.active{background:var(--ink); color:var(--panel);}
-  .nav-user{display:flex; align-items:center; gap:10px; font-size:.85rem; color:var(--ink-soft);}
-  .points-pill{
-    background:var(--mustard); color:var(--ink); padding:4px 10px; border-radius:999px;
-    font-family:'DM Mono', monospace; font-size:.78rem; font-weight:500;
-  }
+  .brand-mark{width:32px; height:32px; border-radius:50%; background:conic-gradient(var(--terracotta),var(--mustard),var(--teal),var(--navy),var(--terracotta)); box-shadow:inset 0 0 0 6px var(--bg);}
+  .brand-name{font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem;}
+  .brand-tag{font-size:.68rem; color:var(--ink-soft); letter-spacing:.5px; text-transform:uppercase;}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:10px; padding:8px 10px; font-size:1.1rem; cursor:pointer;}
+  nav.main-nav{display:flex; gap:4px; align-items:center; flex-wrap:wrap;}
+  .nav-link{padding:8px 13px; border-radius:999px; font-size:.86rem; cursor:pointer; border:1px solid transparent; color:var(--ink); text-decoration:none; white-space:nowrap;}
+  .nav-link:hover{background:rgba(38,32,27,0.06);}
+  .nav-link.active{background:var(--ink); color:#fff;}
+  .nav-user{display:flex; align-items:center; gap:10px; font-size:.8rem; color:var(--ink-soft);}
+  .points-pill{background:var(--mustard); color:var(--ink); padding:4px 10px; border-radius:999px; font-family:'DM Mono', monospace; font-size:.74rem;}
+  .cart-badge{background:var(--terracotta); color:#fff; border-radius:999px; font-size:.66rem; padding:1px 6px; margin-left:5px;}
+  @media (max-width:960px){ .nav-toggle{display:inline-block;} nav.main-nav{display:none; width:100%; flex-direction:column; align-items:stretch; gap:2px; padding-top:10px;} nav.main-nav.mobile-open{display:flex;} .nav-link{width:100%;} }
  
-  main{max-width:1180px; margin:0 auto; padding:28px 24px 80px;}
+  main{max-width:1180px; margin:0 auto; padding:0 24px 90px;}
+  .eyebrow{text-transform:uppercase; letter-spacing:2px; font-size:.7rem; color:var(--terracotta-dark); font-weight:600; display:inline-block; margin-bottom:10px;}
  
-  .eyebrow{
-    text-transform:uppercase; letter-spacing:1.5px; font-size:.72rem; color:var(--coral);
-    font-weight:600; display:inline-block; margin-bottom:8px;
-  }
-  .hero{padding:28px 4px 8px;}
-  .hero p{max-width:560px; color:var(--ink-soft); font-size:1rem;}
+  /* Hero, thelma-style: huge broken headline + CTA */
+  .hero{padding:64px 4px 34px; text-align:center;}
+  .hero h1{font-size:clamp(2.1rem, 5vw, 3.4rem); line-height:1.08; max-width:780px; margin:0 auto .5em;}
+  .hero p{max-width:520px; margin:0 auto; color:var(--ink-soft); font-size:1.02rem;}
+  .hero-cta{margin-top:26px;}
+  .cta-btn{display:inline-block; background:var(--ink); color:#fff; border:none; border-radius:999px; padding:15px 30px; font-size:.98rem; font-weight:600; cursor:pointer; text-decoration:none;}
+  .cta-btn:hover{background:var(--terracotta-dark);}
+ 
+  .panel{background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--line); padding:28px;}
+  .panel + .panel{margin-top:20px;}
+  .section-title{text-align:center; margin:70px 0 8px;}
+  .section-sub{text-align:center; color:var(--ink-soft); margin:0 auto 30px; max-width:560px;}
+ 
+  /* Process steps, thelma-style numbered grid */
+  .steps-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media (max-width:820px){ .steps-grid{grid-template-columns:repeat(2,1fr);} }
+  .step-card{text-align:center; padding:10px;}
+  .step-num{font-family:'DM Mono', monospace; color:var(--terracotta); font-size:.78rem; margin-bottom:8px;}
+  .step-card h3{font-size:1rem;}
+  .step-card p{font-size:.85rem; color:var(--ink-soft);}
+ 
+  .trust-bar{background:var(--navy); color:#fff; border-radius:var(--radius); padding:34px; text-align:center; margin:60px 0;}
+  .trust-bar .big{font-family:'Fraunces',serif; font-size:2.2rem; font-weight:700; color:var(--mustard);}
  
   .workshop{display:grid; grid-template-columns:1.35fr 1fr; gap:22px; align-items:start; margin-top:18px;}
   @media (max-width:880px){ .workshop{grid-template-columns:1fr;} }
- 
-  .panel{
-    background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow);
-    border:1px solid var(--line); padding:26px;
-  }
-  .panel + .panel{margin-top:20px;}
- 
-  .field-label{display:block; font-weight:600; margin-bottom:10px; font-size:.95rem;}
-  input[type=range]{width:100%; accent-color:var(--coral);}
- 
-  .thread-grid{
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(70px,1fr)); gap:12px;
-    margin:14px 0 10px;
-  }
-  .thread-chip{
-    display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer;
-    font-size:.72rem; color:var(--ink-soft);
-  }
-  .thread-chip input[type=color]{
-    width:40px; height:40px; border-radius:50%; border:3px solid var(--panel);
-    box-shadow:0 0 0 2px var(--line); cursor:pointer; padding:0; background:none;
-  }
+  .product-toggle{display:flex; gap:8px; margin:20px 0 0;}
+  .product-toggle button{flex:1; border:1px solid var(--line); background:var(--panel); border-radius:14px; padding:14px; cursor:pointer; font-weight:600; font-size:.92rem; color:var(--ink);}
+  .product-toggle button.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .color-dot-input{width:52px; height:52px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 0 2px var(--line); cursor:pointer; padding:0; background:none;}
+  .color-dot-input::-webkit-color-swatch-wrapper{padding:0; border-radius:50%;}
+  .color-dot-input::-webkit-color-swatch{border:none; border-radius:50%;}
+  .field-label{display:block; font-weight:600; margin-bottom:10px; font-size:.94rem;}
+  input[type=range]{width:100%; accent-color:var(--terracotta);}
+  .thread-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(70px,1fr)); gap:12px; margin:14px 0 10px;}
+  .thread-chip{display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; font-size:.72rem; color:var(--ink-soft);}
+  .thread-chip input[type=color]{width:40px; height:40px; border-radius:50%; border:3px solid var(--panel); box-shadow:0 0 0 2px var(--line); cursor:pointer; padding:0; background:none;}
   .thread-chip input[type=color]::-webkit-color-swatch-wrapper{padding:0; border-radius:50%;}
   .thread-chip input[type=color]::-webkit-color-swatch{border:none; border-radius:50%;}
- 
-  .ghost-btn{
-    background:none; border:1px solid var(--line); border-radius:999px; padding:8px 16px;
-    cursor:pointer; font-size:.82rem; color:var(--ink); margin-top:4px;
-  }
-  .ghost-btn:hover{background:rgba(36,31,28,0.05);}
- 
+  .ghost-btn{background:none; border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; font-size:.82rem; color:var(--ink); margin-top:4px;}
+  .ghost-btn:hover{background:rgba(38,32,27,0.05);}
   .divider{height:1px; background:var(--line); margin:22px 0;}
- 
   .option-row{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 6px;}
-  .chip{
-    border:1px solid var(--line); background:var(--panel); border-radius:999px;
-    padding:8px 16px; font-size:.86rem; cursor:pointer; color:var(--ink);
-  }
+  .chip{border:1px solid var(--line); background:var(--panel); border-radius:999px; padding:8px 16px; font-size:.85rem; cursor:pointer; color:var(--ink);}
   .chip-active{background:var(--navy); color:#fff; border-color:var(--navy);}
-  .text-input{
-    width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
-    margin-top:8px; font-family:inherit; font-size:.9rem; background:#fff;
-  }
- 
-  .toggle-row{margin:8px 0 4px; font-size:.95rem; display:flex; align-items:center; gap:8px;}
-  .toggle-row input{width:18px; height:18px; accent-color:var(--coral);}
+  .text-input, textarea.text-input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line); margin-top:8px; font-family:inherit; font-size:.9rem; background:#fff;}
+  .toggle-row{margin:8px 0 4px; font-size:.94rem; display:flex; align-items:center; gap:8px;}
+  .toggle-row input{width:18px; height:18px; accent-color:var(--terracotta);}
+  .qty-row{display:flex; align-items:center; gap:10px; margin-top:14px;}
+  .qty-row input{width:64px; padding:8px; border-radius:8px; border:1px solid var(--line); text-align:center;}
  
   .summary-card{margin-top:22px; border-top:2px dashed var(--line); padding-top:18px;}
   .summary-row{display:flex; justify-content:space-between; font-size:.9rem; padding:5px 0; color:var(--ink-soft);}
   .summary-row.total{font-size:1.15rem; color:var(--ink); font-weight:700; font-family:'Fraunces',serif; border-top:1px solid var(--line); margin-top:6px; padding-top:12px;}
   .summary-row.points span:last-child{color:var(--teal); font-weight:600;}
- 
-  .primary-btn{
-    width:100%; background:var(--coral); color:#fff; border:none; border-radius:12px;
-    padding:14px 18px; font-size:1rem; font-weight:600; cursor:pointer; margin-top:14px;
-    box-shadow:0 8px 18px rgba(232,93,76,0.28); transition:transform .12s ease;
-  }
-  .primary-btn:hover{transform:translateY(-1px);}
-  .primary-btn.secondary{background:var(--navy); box-shadow:0 8px 18px rgba(43,58,85,0.25);}
+  .primary-btn{width:100%; background:var(--ink); color:#fff; border:none; border-radius:12px; padding:14px 18px; font-size:1rem; font-weight:600; cursor:pointer; margin-top:10px;}
+  .primary-btn:hover{background:var(--terracotta-dark);}
+  .primary-btn.secondary{background:var(--navy);}
+  .primary-btn.small{padding:10px 14px; font-size:.85rem;}
  
   .preview-panel{text-align:center; position:sticky; top:96px;}
-  .preview-caption{font-size:.78rem; color:var(--ink-soft); margin-top:8px; letter-spacing:.3px;}
+  .preview-caption{font-size:.78rem; color:var(--ink-soft); margin-top:8px;}
   #preview svg{width:100%; max-width:280px; height:auto;}
  
-  /* ---------- Auth ---------- */
   .auth-panel{max-width:420px; margin:20px auto; padding:34px;}
   .auth-panel label{display:block; font-size:.85rem; font-weight:600; margin-top:14px; margin-bottom:6px;}
-  .auth-panel input{
-    width:100%; padding:11px 13px; border-radius:10px; border:1px solid var(--line);
-    font-family:inherit; font-size:.95rem; background:#fff;
-  }
+  .auth-panel input{width:100%; padding:11px 13px; border-radius:10px; border:1px solid var(--line); font-family:inherit; font-size:.95rem; background:#fff;}
   .auth-panel .hint{font-size:.76rem; color:var(--ink-soft); margin-top:16px;}
-  .error-msg{background:#FBE3DF; color:#8C2F1E; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-top:12px;}
-  .flash-msg{background:#DEF0EA; color:#1E5C4F; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-bottom:16px;}
+  .error-msg{background:#F6DEDB; color:#8C2F1E; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-top:12px;}
+  .flash-msg{background:#E1EDE8; color:#1E5C4F; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-bottom:16px;}
  
-  /* ---------- Orders ---------- */
-  .order-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px 22px; box-shadow:var(--shadow); margin-bottom:16px; cursor:pointer;
-  }
-  .order-card:hover{border-color:var(--coral);}
+  .order-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; box-shadow:var(--shadow); margin-bottom:16px; cursor:pointer;}
+  .order-card:hover{border-color:var(--terracotta);}
   .order-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;}
   .order-id{font-family:'DM Mono', monospace; font-size:.85rem; color:var(--ink-soft);}
-  .badge{
-    padding:5px 12px; border-radius:999px; font-size:.76rem; font-weight:600; letter-spacing:.2px;
-  }
-  .badge-en_attente_paiement{background:#F6E3B4; color:#7A5B10;}
-  .badge-en_preparation{background:#CFE3E0; color:#215750;}
-  .badge-livree{background:#D6E8D0; color:#2E5B23;}
+  .badge{padding:5px 12px; border-radius:999px; font-size:.76rem; font-weight:600;}
+  .badge-en_attente_paiement{background:#F3E2B9; color:#7A5B10;}
+  .badge-en_preparation{background:#D6E6E2; color:#215750;}
+  .badge-livree{background:#DAEBD6; color:#2E5B23;}
+  .badge-annulee{background:#F3D3D3; color:#8C2F1E;}
  
-  .order-detail{max-width:640px; margin:20px auto; padding:34px;}
+  .order-detail{max-width:680px; margin:20px auto; padding:34px;}
   .status-track{display:flex; justify-content:space-between; margin:26px 0; position:relative;}
-  .status-track::before{
-    content:''; position:absolute; top:13px; left:6%; right:6%; height:3px; background:var(--line); z-index:0;
-  }
+  .status-track::before{content:''; position:absolute; top:13px; left:6%; right:6%; height:3px; background:var(--line); z-index:0;}
   .status-step{flex:1; text-align:center; position:relative; z-index:1; font-size:.76rem; color:var(--ink-soft);}
-  .status-dot{
-    width:26px; height:26px; border-radius:50%; background:var(--panel); border:3px solid var(--line);
-    margin:0 auto 8px;
-  }
+  .status-dot{width:26px; height:26px; border-radius:50%; background:var(--panel); border:3px solid var(--line); margin:0 auto 8px;}
   .status-step.done .status-dot{background:var(--teal); border-color:var(--teal);}
   .status-step.done{color:var(--ink); font-weight:600;}
+  .live-tag{display:inline-flex; align-items:center; gap:6px; font-size:.72rem; color:var(--teal); font-weight:600;}
+  .live-dot{width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .cancelled-banner{background:#F3D3D3; color:#8C2F1E; padding:14px 16px; border-radius:12px; text-align:center; font-weight:600; margin:20px 0;}
   .order-summary-line{display:flex; justify-content:space-between; padding:8px 0; font-size:.9rem; border-bottom:1px dashed var(--line);}
+  .item-row{display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);}
+  .item-row .swatch-row{display:flex; gap:3px;}
+  .swatch-dot{width:12px; height:12px; border-radius:50%; display:inline-block;}
+  .item-meta{flex:1; font-size:.86rem; color:var(--ink-soft);}
+  .item-meta strong{color:var(--ink); font-family:'Fraunces',serif; font-weight:600;}
  
-  /* ---------- Admin ---------- */
-  .admin-table{width:100%; border-collapse:collapse; background:var(--panel); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
-  .admin-table th, .admin-table td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.85rem;}
-  .admin-table th{background:var(--navy); color:#fff; font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.4px;}
-  .admin-table select{padding:6px 8px; border-radius:8px; border:1px solid var(--line); font-family:inherit;}
-  .swatch-row{display:flex; gap:3px;}
-  .swatch-dot{width:12px; height:12px; border-radius:50%;}
- 
-  footer{
-    text-align:center; padding:26px; color:var(--ink-soft); font-size:.76rem; border-top:1px solid var(--line);
-    margin-top:40px;
-  }
+  .cart-item{display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .cart-item .item-meta{min-width:220px;}
+  .qty-stepper{display:flex; align-items:center; gap:8px;}
+  .qty-stepper button{width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:#fff; cursor:pointer;}
+  .remove-link{color:var(--terracotta-dark); font-size:.8rem; cursor:pointer; border:none; background:none; text-decoration:underline;}
   .empty-state{text-align:center; padding:60px 20px; color:var(--ink-soft);}
+ 
+  .checkout-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:22px; align-items:start;}
+  @media (max-width:880px){ .checkout-grid{grid-template-columns:1fr;} }
+ 
+  .gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:18px; margin-top:10px;}
+  .gallery-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); text-align:center;}
+  .gallery-card svg{width:100%; max-width:150px;}
+  .gallery-card h3{font-size:1rem; margin:8px 0 2px;}
+  .gallery-card .price{font-size:.78rem; color:var(--ink-soft); margin-bottom:10px;}
+ 
+  .testimonial-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:10px;}
+  .testimonial-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);}
+  .avatar-initial{width:38px; height:38px; border-radius:50%; background:var(--terracotta); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; margin-bottom:12px;}
+  .testimonial-card p{font-size:.9rem; color:var(--ink-soft); font-style:italic;}
+  .testimonial-card .who{font-weight:600; margin-top:10px; font-family:'Fraunces',serif; font-size:.92rem;}
+ 
+  .faq-item{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin-bottom:10px;}
+  .faq-item summary{cursor:pointer; font-weight:600;}
+  .faq-item p{margin:10px 0 2px; color:var(--ink-soft); font-size:.9rem;}
+ 
+  .newsletter-form{display:flex; gap:8px; max-width:420px; margin:18px auto 0; flex-wrap:wrap; justify-content:center;}
+  .newsletter-form input{flex:1; min-width:180px; padding:10px 12px; border-radius:10px; border:1px solid var(--line);}
+ 
+  .account-tabs{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
+  .tab-btn{border:1px solid var(--line); background:var(--panel); border-radius:999px; padding:8px 16px; cursor:pointer; font-size:.86rem;}
+  .tab-btn.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+ 
+  .stats-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0 26px;}
+  .stat-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; box-shadow:var(--shadow);}
+  .stat-card .num{font-family:'Fraunces',serif; font-size:1.6rem; font-weight:700;}
+  .stat-card .lab{font-size:.78rem; color:var(--ink-soft);}
+ 
+  .admin-toolbar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; align-items:center;}
+  .admin-toolbar input, .admin-toolbar select{padding:9px 12px; border-radius:10px; border:1px solid var(--line); font-family:inherit;}
+  .admin-table{width:100%; border-collapse:collapse; background:var(--panel); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+  .admin-table th, .admin-table td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.82rem;}
+  .admin-table th{background:var(--navy); color:#fff; font-weight:600; font-size:.74rem; text-transform:uppercase; letter-spacing:.4px;}
+  .admin-table select{padding:6px 8px; border-radius:8px; border:1px solid var(--line); font-family:inherit;}
+  .icon-btn{background:none; border:1px solid var(--line); border-radius:8px; padding:5px 9px; cursor:pointer; font-size:.78rem;}
+  .icon-btn:hover{background:#F6DEDB; border-color:var(--terracotta);}
+  .admin-note{background:#FDF3E4; border:1px solid #EBD9AE; color:#7A5B10; padding:12px 16px; border-radius:12px; font-size:.82rem; margin-bottom:18px;}
+ 
+  footer{text-align:center; padding:36px 20px; color:var(--ink-soft); font-size:.76rem; border-top:1px solid var(--line); margin-top:50px;}
+  footer .foot-links{margin-bottom:14px;}
+  footer .foot-links a{margin:0 8px; color:var(--ink);}
+  .loading-screen{display:flex; align-items:center; justify-content:center; height:70vh; color:var(--ink-soft); font-family:'Fraunces',serif;}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><div class="loading-screen">Chargement de l’atelier…</div></div>
  
-<script>
+<script type="module">
+/* ============================= FIREBASE SETUP ============================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+  onAuthStateChanged, sendPasswordResetEmail, updatePassword,
+  EmailAuthProvider, reauthenticateWithCredential
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc,
+  collection, addDoc, query, where, getDocs, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+ 
+const firebaseConfig = {
+  apiKey: "AIzaSyA2pr_cAu5IVdAqklNoCQU19GhzVj8kfE8",
+  authDomain: "tressageailleur-d4dc7.firebaseapp.com",
+  projectId: "tressageailleur-d4dc7",
+  storageBucket: "tressageailleur-d4dc7.firebasestorage.app",
+  messagingSenderId: "722116736518",
+  appId: "1:722116736518:web:714c471d7aaa254d993587"
+};
+const fbApp = initializeApp(firebaseConfig);
+const auth = getAuth(fbApp);
+const db = getFirestore(fbApp);
+ 
 /* ============================= DATA / CONSTANTS ============================= */
 const PALETTE = ['#E85D4C','#2A9D8F','#E9B44C','#6B4C6B','#2B3A55','#EE6C4D','#98C1D9','#F4A261','#606C38','#BC6C25','#264653','#E76F51','#8AB17D','#D62828'];
- 
-const BRAID_OPTIONS = [
-  {id:'coeur', label:'Cœur'},
-  {id:'mer', label:'Vagues (mer)'},
-  {id:'etoile', label:'Étoile'},
-  {id:'autre', label:'Autre'}
-];
+const BRAID_OPTIONS = [{id:'coeur',label:'Cœur'},{id:'mer',label:'Vagues (mer)'},{id:'etoile',label:'Étoile'},{id:'autre',label:'Autre'}];
 const BRAID_GLYPH = {coeur:'♥', mer:'≈', etoile:'★', autre:'✦'};
- 
-const PENDANT_OPTIONS = [
-  {id:'coeur', label:'Cœur'},
-  {id:'etoile', label:'Étoile'},
-  {id:'papillon', label:'Papillon'},
-  {id:'fleur', label:'Fleur'},
-  {id:'autre', label:'Autre'}
-];
+const PENDANT_OPTIONS = [{id:'coeur',label:'Cœur'},{id:'etoile',label:'Étoile'},{id:'papillon',label:'Papillon'},{id:'fleur',label:'Fleur'},{id:'autre',label:'Autre'}];
 const PENDANT_GLYPH = {coeur:'♥', etoile:'★', papillon:'🦋', fleur:'❀', autre:'✦'};
- 
-const STATUS_LABELS = {
-  en_attente_paiement:'En attente de paiement',
-  en_preparation:'En préparation',
-  livree:'Livrée'
-};
+const STATUS_LABELS = {en_attente_paiement:'En attente de paiement', en_preparation:'En préparation', livree:'Livrée', annulee:'Annulée'};
 const STATUS_ORDER = ['en_attente_paiement','en_preparation','livree'];
+const POINT_EARN_RATE = 2;
+const POINT_REDEEM_VALUE = 0.20;
+ 
+const EARRING_SHAPES = [{id:'papillon',label:'Papillon'},{id:'coeur',label:'Cœur'},{id:'etoile',label:'Étoile'},{id:'rond',label:'Rond'},{id:'carre',label:'Carré'},{id:'autre',label:'Autre'}];
+const EARRING_SHAPE_GLYPH = {papillon:'🦋', coeur:'♥', etoile:'★', rond:'●', carre:'■', autre:'✦'};
+const HOOK_OPTIONS = [{id:'petite', label:'Petite attache (puce)'}, {id:'grande', label:'Grande attache (crochet)'}];
+const EARRING_PRESETS = [
+  {name:'Cœur corail', color:PALETTE[0], shape:'coeur', shapeCustom:'', hook:'petite'},
+  {name:'Étoile dorée', color:PALETTE[2], shape:'etoile', shapeCustom:'', hook:'grande'},
+  {name:'Papillon menthe', color:PALETTE[1], shape:'papillon', shapeCustom:'', hook:'grande'},
+  {name:'Rond minimal', color:PALETTE[4], shape:'rond', shapeCustom:'', hook:'petite'}
+];
+ 
+const PRESETS = [
+  {name:'Lever de soleil', threads:[PALETTE[0],PALETTE[7],PALETTE[2],PALETTE[5]], braid:'mer', braidCustom:'', pendant:false, pendantShape:'coeur', pendantCustom:''},
+  {name:'Océan profond', threads:[PALETTE[10],PALETTE[4],PALETTE[1],PALETTE[6]], braid:'mer', braidCustom:'', pendant:true, pendantShape:'etoile', pendantCustom:''},
+  {name:'Amitié éternelle', threads:[PALETTE[0],PALETTE[3],PALETTE[9]], braid:'coeur', braidCustom:'', pendant:true, pendantShape:'coeur', pendantCustom:''},
+  {name:'Jardin fleuri', threads:[PALETTE[8],PALETTE[2],PALETTE[12],PALETTE[7]], braid:'etoile', braidCustom:'', pendant:true, pendantShape:'fleur', pendantCustom:''},
+  {name:'Nuit étoilée', threads:[PALETTE[4],PALETTE[10],PALETTE[3]], braid:'etoile', braidCustom:'', pendant:true, pendantShape:'etoile', pendantCustom:''},
+  {name:'Minimaliste', threads:[PALETTE[4],PALETTE[7]], braid:'autre', braidCustom:'Torsadé simple', pendant:false, pendantShape:'coeur', pendantCustom:''}
+];
+const TESTIMONIALS = [
+  {name:'Camille', text:'Le bracelet correspond exactement à ce que j’avais imaginé, les couleurs sont parfaites.'},
+  {name:'Yanis', text:'Commande simple, suivi clair, et le rendu est encore plus joli qu’à l’écran.'},
+  {name:'Inès', text:'J’ai adoré pouvoir choisir chaque fil un par un : un vrai bracelet unique.'}
+];
+const FAQ_ITEMS = [
+  {q:'Combien de temps pour recevoir mon bracelet ?', a:'Chaque bracelet est tressé à la main après validation de la commande ; comptez en moyenne quelques jours de préparation avant l’envoi.'},
+  {q:'Puis-je modifier ma commande après l’avoir passée ?', a:'Tant que la commande est encore « en attente de paiement », vous pouvez l’annuler depuis la page de suivi et en recomposer une nouvelle.'},
+  {q:'Comment fonctionnent les points de fidélité ?', a:`Chaque tranche de ${POINT_EARN_RATE} € dépensés vous rapporte 1 point. Chaque point vaut ensuite ${POINT_REDEEM_VALUE.toFixed(2).replace('.',',')} € de réduction, utilisable au moment du paiement.`},
+  {q:'Le pendentif est-il inclus dans le prix de base ?', a:'Non, l’ajout d’un pendentif est une option supplémentaire facturée en plus du bracelet.'},
+  {q:'Mes informations sont-elles en sécurité ?', a:'Les comptes sont gérés par Firebase Authentication et les commandes stockées dans une base de données privée (Firestore), protégée par des règles de sécurité : personne ne peut lire les commandes d’un autre client.'}
+];
  
 /* ============================= STATE ============================= */
+function defaultConfig(){ return {threads:PALETTE.slice(0,6), braid:'coeur', braidCustom:'', pendant:false, pendantShape:'coeur', pendantCustom:''}; }
+function defaultEarringConfig(){ return {color:PALETTE[0], shape:'coeur', shapeCustom:'', hook:'petite'}; }
 let state = {
-  view:'home',
-  currentUser:null, // {username, points, isAdmin}
-  config:{
-    threads:PALETTE.slice(0,6),
-    braid:'coeur', braidCustom:'',
-    pendant:false, pendantShape:'coeur', pendantCustom:''
-  },
-  authError:null,
-  flash:null,
-  myOrders:[],
-  currentOrderData:null,
-  currentOrderId:null,
-  allOrders:[],
-  loading:false
+  view:'landing', authReady:false, currentUser:null,
+  activeProduct:'bracelet',
+  config:defaultConfig(), earringConfig:defaultEarringConfig(), qty:1, cart:[], wishlist:[],
+  authError:null, flash:null,
+  myOrders:[], currentOrderData:null, currentOrderId:null,
+  allOrders:[], adminFilter:'all', adminCustomerCount:0, adminNewsletterCount:0,
+  accountTab:'profil', pendingCheckout:false, checkoutRedeem:0, mobileNavOpen:false
 };
+let unsubOrder=null, unsubAdmin=null;
+function stopListeners(){ if(unsubOrder){unsubOrder(); unsubOrder=null;} if(unsubAdmin){unsubAdmin(); unsubAdmin=null;} }
  
-let pollTimer=null;
+/* ============================= FIRESTORE HELPERS ============================= */
+async function getUserDoc(uid){ const s = await getDoc(doc(db,'users',uid)); return s.exists() ? s.data() : null; }
+async function createUserDoc(uid, data){ await setDoc(doc(db,'users',uid), data); }
+async function updateUserDoc(uid, fields){ await updateDoc(doc(db,'users',uid), fields); }
+async function createOrderDoc(data){ const ref = await addDoc(collection(db,'orders'), data); return ref.id; }
+async function getOrderDoc(id){ const s = await getDoc(doc(db,'orders',id)); return s.exists() ? {id:s.id, ...s.data()} : null; }
+async function updateOrderDoc(id, fields){ await updateDoc(doc(db,'orders',id), fields); }
+async function deleteOrderDoc(id){ await deleteDoc(doc(db,'orders',id)); }
+async function queryOrdersByUser(uid){
+  const snap = await getDocs(query(collection(db,'orders'), where('uid','==',uid)));
+  const list=[]; snap.forEach(d=> list.push({id:d.id, ...d.data()}));
+  list.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+  return list;
+}
+async function addWishlistDoc(uid, item){ await addDoc(collection(db,'wishlist'), {...item, uid}); }
+async function queryWishlist(uid){
+  const snap = await getDocs(query(collection(db,'wishlist'), where('uid','==',uid)));
+  const list=[]; snap.forEach(d=> list.push({id:d.id, ...d.data()}));
+  return list;
+}
+async function deleteWishlistDoc(id){ await deleteDoc(doc(db,'wishlist',id)); }
+async function subscribeNewsletterDoc(email){ await setDoc(doc(db,'newsletter',email.toLowerCase()), {email, subscribedAt:new Date().toISOString()}); }
+async function countCollection(name){ const snap = await getDocs(collection(db,name)); return snap.size; }
  
-/* ============================= STORAGE HELPERS ============================= */
-async function storageGet(key, shared){
-  try{
-    const r = await window.storage.get(key, shared);
-    return r ? r.value : null;
-  }catch(e){ return null; }
-}
-async function storageSet(key, value, shared){
-  try{ await window.storage.set(key, value, shared); return true; }
-  catch(e){ return false; }
-}
-async function storageList(prefix, shared){
-  try{ const r = await window.storage.list(prefix, shared); return r ? r.keys : []; }
-  catch(e){ return []; }
-}
- 
-async function getUserRecord(username){
-  const v = await storageGet('user:'+username, true);
-  return v ? JSON.parse(v) : null;
-}
-async function ensureAdminAccount(){
-  const existing = await getUserRecord('admin');
-  if(!existing){
-    await storageSet('user:admin', JSON.stringify({username:'admin', password:'admin123', points:0, isAdmin:true}), true);
-  }
+function mapAuthError(code){
+  const map = {
+    'auth/email-already-in-use':'Un compte existe déjà avec cet e-mail.',
+    'auth/invalid-email':'Adresse e-mail invalide.',
+    'auth/weak-password':'Le mot de passe doit contenir au moins 6 caractères.',
+    'auth/invalid-credential':'E-mail ou mot de passe incorrect.',
+    'auth/wrong-password':'E-mail ou mot de passe incorrect.',
+    'auth/user-not-found':'E-mail ou mot de passe incorrect.',
+    'auth/too-many-requests':'Trop de tentatives, réessayez dans quelques minutes.'
+  };
+  return map[code] || 'Une erreur est survenue, veuillez réessayer.';
 }
  
 /* ============================= HELPERS ============================= */
-function calcPrice(cfg){
-  const base = 2.5, perThread = 0.6, pendantFee = 2.8;
-  let p = base + cfg.threads.length*perThread + (cfg.pendant ? pendantFee : 0);
-  return Math.round(p*100)/100;
+function calcUnitPrice(cfg){ const base=2.5, perThread=0.6, pendantFee=2.8; return Math.round((base+cfg.threads.length*perThread+(cfg.pendant?pendantFee:0))*100)/100; }
+function eur(n){ return (Math.round(n*100)/100).toFixed(2).replace('.', ',') + ' €'; }
+function braidLabel(o){ return o.braid==='autre' ? (o.braidCustom||'Autre') : (BRAID_OPTIONS.find(b=>b.id===o.braid)||{}).label; }
+function pendantLabel(o){ if(!o.pendant) return 'Aucun'; return o.pendantShape==='autre' ? (o.pendantCustom||'Autre') : (PENDANT_OPTIONS.find(p=>p.id===o.pendantShape)||{}).label; }
+function fmtDate(iso){ try{ return new Date(iso).toLocaleString('fr-FR', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'}); }catch(e){ return iso; } }
+function cartSubtotal(){ return state.cart.reduce((s,i)=> s+i.unitPrice*i.qty, 0); }
+function cartCount(){ return state.cart.reduce((s,i)=> s+i.qty, 0); }
+function maxRedeemablePoints(subtotal, userPoints){ return Math.max(0, Math.min(userPoints||0, Math.floor((subtotal*0.5)/POINT_REDEEM_VALUE))); }
+function calcEarringPrice(cfg){ const base=4.0, hookFee=1.0; return Math.round((base + (cfg.hook==='grande'?hookFee:0))*100)/100; }
+function earringShapeLabel(o){ return o.shape==='autre' ? (o.shapeCustom||'Autre') : (EARRING_SHAPES.find(s=>s.id===o.shape)||{}).label; }
+function hookLabel(o){ return (HOOK_OPTIONS.find(h=>h.id===o.hook)||{}).label || ''; }
+function describeItem(it){
+  if(it.type==='earring'){ return `Boucles d'oreille pâte Fimo — ${earringShapeLabel(it)} · ${hookLabel(it)}`; }
+  return `${it.threads.length} fils — ${braidLabel(it)} · ${pendantLabel(it)}`;
 }
-function eur(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
-function braidLabel(cfg){
-  const found = BRAID_OPTIONS.find(o=>o.id===cfg.braid);
-  return cfg.braid==='autre' ? (cfg.braidCustom || 'Autre (à préciser)') : (found?found.label:'—');
+function itemSwatches(it){
+  if(it.type==='earring'){ return `<span class="swatch-dot" style="background:${it.color}"></span>`; }
+  return (it.threads||[]).map(c=>`<span class="swatch-dot" style="background:${c}"></span>`).join('');
 }
-function pendantLabel(cfg){
-  if(!cfg.pendant) return 'Aucun';
-  return cfg.pendantShape==='autre' ? (cfg.pendantCustom || 'Autre (à préciser)') : (PENDANT_OPTIONS.find(o=>o.id===cfg.pendantShape)||{}).label;
-}
-function fmtDate(iso){
-  try{ return new Date(iso).toLocaleString('fr-FR', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'}); }
-  catch(e){ return iso; }
+function itemPreviewSVG(it){ return it.type==='earring' ? buildEarringSVG(it) : buildPreviewSVG(it); }
+function buildEarringSVG(cfg){
+  const glyph = EARRING_SHAPE_GLYPH[cfg.shape] || '✦';
+  const hookMarkup = cfg.hook==='grande'
+    ? `<path d="M100 14 C 84 14 82 34 100 40 C 118 34 116 14 100 14" fill="none" stroke="#C9A227" stroke-width="4" stroke-linecap="round"/>`
+    : `<circle cx="100" cy="20" r="7" fill="#C9A227"/>`;
+  const pid = 'e'+Math.random().toString(36).slice(2,8);
+  return `
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aperçu des boucles d'oreille">
+    <defs><filter id="ef-${pid}" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#26201B" flood-opacity="0.16"/></filter></defs>
+    <g filter="url(#ef-${pid})">
+      ${hookMarkup}
+      <circle cx="100" cy="115" r="62" fill="#FFFFFF" stroke="#26201B" stroke-opacity="0.1"/>
+      <text x="100" y="140" text-anchor="middle" font-size="80" fill="${cfg.color}">${glyph}</text>
+    </g>
+  </svg>`;
 }
  
 function buildPreviewSVG(cfg){
   const threads = cfg.threads.length ? cfg.threads : ['#ccc'];
-  const n = threads.length;
-  const stripeH = 16/n;
-  let rects='';
-  for(let i=0;i<n;i++){
-    rects += `<rect x="0" y="${(i*stripeH).toFixed(3)}" width="16" height="${(stripeH+0.4).toFixed(3)}" fill="${threads[i]}"/>`;
-  }
+  const n = threads.length, stripeH = 16/n;
+  let rects=''; for(let i=0;i<n;i++){ rects += `<rect x="0" y="${(i*stripeH).toFixed(3)}" width="16" height="${(stripeH+0.4).toFixed(3)}" fill="${threads[i]}"/>`; }
   const braidChar = BRAID_GLYPH[cfg.braid] || '✦';
   const pendantChar = cfg.pendant ? (PENDANT_GLYPH[cfg.pendantShape] || '✦') : '';
+  const pid = 'p'+Math.random().toString(36).slice(2,8);
   return `
   <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aperçu du bracelet">
     <defs>
-      <pattern id="threadPattern" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        ${rects}
-      </pattern>
-      <mask id="ringMask">
-        <circle cx="100" cy="100" r="85" fill="#fff"/>
-        <circle cx="100" cy="100" r="54" fill="#000"/>
-      </mask>
-      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#241F1C" flood-opacity="0.18"/>
-      </filter>
+      <pattern id="tp-${pid}" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">${rects}</pattern>
+      <mask id="rm-${pid}"><circle cx="100" cy="100" r="85" fill="#fff"/><circle cx="100" cy="100" r="54" fill="#000"/></mask>
+      <filter id="sf-${pid}" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#26201B" flood-opacity="0.16"/></filter>
     </defs>
-    <g filter="url(#softShadow)">
-      <rect x="0" y="0" width="200" height="200" fill="url(#threadPattern)" mask="url(#ringMask)"/>
-    </g>
-    <circle cx="100" cy="26" r="16" fill="#FFFDF8" stroke="#241F1C" stroke-opacity="0.15"/>
-    <text x="100" y="32" text-anchor="middle" font-size="18" fill="#2B3A55">${braidChar}</text>
-    ${cfg.pendant ? `
-      <line x1="100" y1="154" x2="100" y2="196" stroke="#C9A227" stroke-width="2"/>
-      <circle cx="100" cy="211" r="18" fill="#FFFDF8" stroke="#C9A227" stroke-width="2"/>
-      <text x="100" y="217" text-anchor="middle" font-size="18" fill="#C9A227">${pendantChar}</text>
-    ` : ''}
+    <g filter="url(#sf-${pid})"><rect x="0" y="0" width="200" height="200" fill="url(#tp-${pid})" mask="url(#rm-${pid})"/></g>
+    <circle cx="100" cy="26" r="16" fill="#FFFFFF" stroke="#26201B" stroke-opacity="0.14"/>
+    <text x="100" y="32" text-anchor="middle" font-size="18" fill="#33465C">${braidChar}</text>
+    ${cfg.pendant ? `<line x1="100" y1="154" x2="100" y2="196" stroke="#C7816F" stroke-width="2"/><circle cx="100" cy="211" r="18" fill="#FFFFFF" stroke="#C7816F" stroke-width="2"/><text x="100" y="217" text-anchor="middle" font-size="18" fill="#C7816F">${pendantChar}</text>` : ''}
   </svg>`;
 }
  
 /* ============================= NAVIGATION ============================= */
-function stopPolling(){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; } }
- 
 async function goTo(view, opts={}){
-  stopPolling();
-  state.authError=null;
+  stopListeners();
+  state.authError=null; state.mobileNavOpen=false;
+  if(view==='account' && !state.currentUser) view='login';
+  if(view==='checkout'){
+    if(!state.currentUser){ state.pendingCheckout=true; view='login'; }
+    else if(!state.cart.length){ view='cart'; }
+  }
+  if(view==='admin' && (!state.currentUser || !state.currentUser.isAdmin)) view='landing';
   state.view=view;
  
-  if(view==='myorders'){
-    state.myOrders = await loadMyOrders();
-  }
+  if(view==='myorders'){ state.myOrders = await queryOrdersByUser(state.currentUser.uid); }
   if(view==='order'){
     state.currentOrderId = opts.orderId || state.currentOrderId;
-    state.currentOrderData = await loadOrder(state.currentOrderId);
-    pollTimer = setInterval(async ()=>{
-      const fresh = await loadOrder(state.currentOrderId);
-      if(fresh && JSON.stringify(fresh)!==JSON.stringify(state.currentOrderData)){
-        state.currentOrderData = fresh;
-        render();
-      }
-    }, 4000);
+    unsubOrder = onSnapshot(doc(db,'orders',state.currentOrderId), (snap)=>{
+      state.currentOrderData = snap.exists() ? {id:snap.id, ...snap.data()} : null;
+      render();
+    });
   }
   if(view==='admin'){
-    state.allOrders = await loadAllOrders();
+    unsubAdmin = onSnapshot(collection(db,'orders'), (snap)=>{
+      const list=[]; snap.forEach(d=> list.push({id:d.id, ...d.data()}));
+      list.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+      state.allOrders = list; render();
+    });
+    state.adminCustomerCount = await countCollection('users');
+    state.adminNewsletterCount = await countCollection('newsletter');
   }
+  if(view==='account'){ state.wishlist = await queryWishlist(state.currentUser.uid); }
+  if(view==='checkout'){ state.checkoutRedeem = 0; }
   render();
-}
- 
-async function loadMyOrders(){
-  if(!state.currentUser) return [];
-  const raw = await storageGet('user-orders:'+state.currentUser.username, true);
-  const ids = raw ? JSON.parse(raw) : [];
-  const orders=[];
-  for(const id of ids){
-    const o = await loadOrder(id);
-    if(o) orders.push(o);
-  }
-  orders.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
-  return orders;
-}
-async function loadOrder(id){
-  if(!id) return null;
-  const raw = await storageGet('order:'+id, true);
-  return raw ? JSON.parse(raw) : null;
-}
-async function loadAllOrders(){
-  const keys = await storageList('order:', true);
-  const orders=[];
-  for(const k of keys){
-    const raw = await storageGet(k, true);
-    if(raw) orders.push(JSON.parse(raw));
-  }
-  orders.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
-  return orders;
 }
  
 /* ============================= ACTIONS ============================= */
-async function placeOrder(){
-  if(!state.currentUser){
-    state.flash=null;
-    state.authError='Connectez-vous ou créez un compte pour valider votre commande.';
-    await goTo('login');
-    return;
-  }
-  const cfg = state.config;
-  const price = calcPrice(cfg);
-  const id = 'CMD-' + Date.now().toString(36).toUpperCase();
-  const order = {
-    id, username: state.currentUser.username,
-    threads: cfg.threads.slice(),
-    braid: cfg.braid, braidCustom: cfg.braidCustom||'',
-    pendant: cfg.pendant,
-    pendantShape: cfg.pendant ? cfg.pendantShape : null,
-    pendantCustom: cfg.pendant ? (cfg.pendantCustom||'') : '',
-    price,
-    status:'en_attente_paiement',
-    createdAt: new Date().toISOString()
+function addToCart(){
+  const cfg = state.config, unitPrice = calcUnitPrice(cfg);
+  const itemId = 'ITEM-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  state.cart.push({itemId, type:'bracelet', threads:cfg.threads.slice(), braid:cfg.braid, braidCustom:cfg.braidCustom, pendant:cfg.pendant, pendantShape:cfg.pendantShape, pendantCustom:cfg.pendantCustom, qty:Math.max(1,state.qty||1), unitPrice});
+  state.flash='Bracelet ajouté au panier !'; render();
+}
+function addEarringToCart(){
+  const cfg = state.earringConfig, unitPrice = calcEarringPrice(cfg);
+  const itemId = 'ITEM-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  state.cart.push({itemId, type:'earring', color:cfg.color, shape:cfg.shape, shapeCustom:cfg.shapeCustom, hook:cfg.hook, qty:Math.max(1,state.qty||1), unitPrice});
+  state.flash='Boucles d’oreille ajoutées au panier !'; render();
+}
+function removeFromCart(itemId){ state.cart = state.cart.filter(i=> i.itemId!==itemId); render(); }
+function changeCartQty(itemId, delta){ const item = state.cart.find(i=> i.itemId===itemId); if(!item) return; item.qty = Math.max(1, Math.min(20, item.qty+delta)); render(); }
+ 
+async function saveToWishlist(){
+  if(!state.currentUser){ state.authError='Connectez-vous pour enregistrer un modèle.'; await goTo('login'); return; }
+  const name = (prompt('Nom de ce modèle ?', 'Mon bracelet') || 'Mon bracelet').slice(0,40);
+  await addWishlistDoc(state.currentUser.uid, {name, cfg:JSON.parse(JSON.stringify(state.config)), savedAt:new Date().toISOString()});
+  state.flash='Modèle enregistré dans votre liste d’envies.'; render();
+}
+async function removeWishlistItem(id){ await deleteWishlistDoc(id); state.wishlist = state.wishlist.filter(w=> w.id!==id); render(); }
+ 
+async function placeOrderFromCart(shipping, notes){
+  if(!state.currentUser || !state.cart.length) return;
+  const subtotal = Math.round(cartSubtotal()*100)/100;
+  const userRec = await getUserDoc(state.currentUser.uid);
+  const maxRedeem = maxRedeemablePoints(subtotal, userRec ? userRec.points : 0);
+  const redeem = Math.max(0, Math.min(state.checkoutRedeem||0, maxRedeem));
+  const discount = Math.round(redeem*POINT_REDEEM_VALUE*100)/100;
+  const total = Math.max(0, Math.round((subtotal-discount)*100)/100);
+  const pointsEarned = Math.floor(total/POINT_EARN_RATE);
+  const orderData = {
+    uid: state.currentUser.uid, email: state.currentUser.email,
+    items: state.cart.map(i=>({...i})),
+    subtotal, pointsRedeemed:redeem, discount, total, pointsEarned,
+    shipping, notes: notes||'', status:'en_attente_paiement', createdAt:new Date().toISOString()
   };
-  await storageSet('order:'+id, JSON.stringify(order), true);
- 
-  const idxRaw = await storageGet('user-orders:'+state.currentUser.username, true);
-  const idx = idxRaw ? JSON.parse(idxRaw) : [];
-  idx.push(id);
-  await storageSet('user-orders:'+state.currentUser.username, JSON.stringify(idx), true);
- 
-  const pointsEarned = Math.floor(price/2);
-  const userRec = await getUserRecord(state.currentUser.username);
+  const id = await createOrderDoc(orderData);
   if(userRec){
-    userRec.points = (userRec.points||0) + pointsEarned;
-    await storageSet('user:'+state.currentUser.username, JSON.stringify(userRec), true);
-    state.currentUser.points = userRec.points;
+    const newPoints = Math.max(0, (userRec.points||0) - redeem + pointsEarned);
+    await updateUserDoc(state.currentUser.uid, {points:newPoints, fullName:shipping.fullName||userRec.fullName||'', address:shipping.address||userRec.address||'', city:shipping.city||userRec.city||'', zip:shipping.zip||userRec.zip||'', phone:shipping.phone||userRec.phone||''});
+    state.currentUser.points = newPoints;
   }
+  state.cart=[]; state.checkoutRedeem=0;
   await goTo('order', {orderId:id});
 }
  
-async function handleLogin(username, password){
-  const user = await getUserRecord(username);
-  if(!user || user.password !== password){
-    state.authError = 'Identifiants incorrects.';
-    render();
-    return;
-  }
-  state.currentUser = {username:user.username, points:user.points||0, isAdmin:!!user.isAdmin};
-  state.flash = `Bienvenue, ${user.username} !`;
-  await goTo('home');
+async function cancelOrder(orderId){
+  const order = await getOrderDoc(orderId);
+  if(!order || order.status!=='en_attente_paiement') return;
+  await updateOrderDoc(orderId, {status:'annulee'});
 }
-async function handleRegister(username, password){
-  if(!username || !password){ state.authError='Merci de remplir tous les champs.'; render(); return; }
-  const existing = await getUserRecord(username);
-  if(existing){ state.authError='Ce nom d’utilisateur existe déjà.'; render(); return; }
-  const user = {username, password, points:0, isAdmin:false};
-  await storageSet('user:'+username, JSON.stringify(user), true);
-  state.currentUser = {username, points:0, isAdmin:false};
-  state.flash = `Compte créé, bienvenue ${username} !`;
-  await goTo('home');
+ 
+async function handleLogin(email, password){
+  if(!email || !password){ state.authError='Merci de remplir tous les champs.'; render(); return; }
+  try{ await signInWithEmailAndPassword(auth, email, password); }
+  catch(e){ state.authError = mapAuthError(e.code); render(); }
 }
-function handleLogout(){
-  state.currentUser=null;
-  state.flash='Vous êtes déconnecté(e).';
-  goTo('home');
+async function handleRegister(email, password, confirmPassword, fullName){
+  if(!email || !password){ state.authError='Merci de remplir tous les champs.'; render(); return; }
+  if(password!==confirmPassword){ state.authError='Les mots de passe ne correspondent pas.'; render(); return; }
+  try{
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await createUserDoc(cred.user.uid, {email, fullName:fullName||'', address:'', city:'', zip:'', phone:'', points:0, isAdmin:false, createdAt:new Date().toISOString()});
+  }catch(e){ state.authError = mapAuthError(e.code); render(); }
 }
-async function handleAdminStatusChange(orderId, newStatus){
-  const raw = await storageGet('order:'+orderId, true);
-  if(!raw) return;
-  const order = JSON.parse(raw);
-  order.status = newStatus;
-  await storageSet('order:'+orderId, JSON.stringify(order), true);
-  state.allOrders = await loadAllOrders();
-  render();
+async function handleForgotPassword(email){
+  if(!email){ state.authError='Indiquez votre e-mail ci-dessus puis cliquez à nouveau.'; render(); return; }
+  try{ await sendPasswordResetEmail(auth, email); state.flash='E-mail de réinitialisation envoyé.'; render(); }
+  catch(e){ state.authError = mapAuthError(e.code); render(); }
+}
+async function handleLogout(){ await signOut(auth); await goTo('landing'); }
+ 
+async function saveProfile(fields){
+  await updateUserDoc(state.currentUser.uid, fields);
+  Object.assign(state.currentUser, fields);
+  state.flash='Profil mis à jour.'; render();
+}
+async function changePasswordFlow(oldPw, newPw, confirmPw){
+  if(newPw!==confirmPw){ state.authError='Les mots de passe ne correspondent pas.'; render(); return; }
+  try{
+    const cred = EmailAuthProvider.credential(auth.currentUser.email, oldPw);
+    await reauthenticateWithCredential(auth.currentUser, cred);
+    await updatePassword(auth.currentUser, newPw);
+    state.flash='Mot de passe modifié.'; state.authError=null; render();
+  }catch(e){ state.authError = mapAuthError(e.code); render(); }
+}
+async function subscribeNewsletter(email){ if(!email) return; await subscribeNewsletterDoc(email); state.flash='Merci, vous êtes inscrit(e) à la newsletter !'; render(); }
+ 
+async function handleAdminStatusChange(orderId, newStatus){ await updateOrderDoc(orderId, {status:newStatus}); }
+async function handleAdminDelete(orderId){ if(!confirm('Supprimer définitivement la commande '+orderId+' ?')) return; await deleteOrderDoc(orderId); }
+function exportOrdersCSV(orders){
+  const rows=[['ID','Client','Sous-total','Reduction','Total','Statut','Date']];
+  orders.forEach(o=> rows.push([o.id, o.email, (o.subtotal||0).toFixed(2), (o.discount||0).toFixed(2), (o.total||0).toFixed(2), STATUS_LABELS[o.status]||o.status, fmtDate(o.createdAt)]));
+  const csv = rows.map(r=> r.map(c=> `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='commandes.csv'; document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function computeStats(orders){
+  const byStatus={en_attente_paiement:0, en_preparation:0, livree:0, annulee:0}; let revenue=0;
+  orders.forEach(o=>{ byStatus[o.status]=(byStatus[o.status]||0)+1; if(o.status!=='annulee') revenue += (o.total||0); });
+  return {byStatus, revenue, count:orders.length};
 }
  
 /* ============================= RENDER: HEADER ============================= */
 function renderHeader(){
-  const u = state.currentUser;
+  const u = state.currentUser, cCount = cartCount();
   return `
   <header class="site-header">
-    <div class="brand" data-action="go-home">
+    <div class="brand" data-action="go-landing">
       <div class="brand-mark"></div>
-      <div>
-        <div class="brand-name">Nœuds &amp; Fils</div>
-        <div class="brand-tag">Bracelets brésiliens sur mesure</div>
-      </div>
+      <div><div class="brand-name">Nœuds &amp; Fils</div><div class="brand-tag">Bracelets &amp; boucles d’oreille faits main</div></div>
     </div>
-    <nav class="main-nav">
-      <a class="nav-link ${state.view==='home'?'active':''}" data-action="go-home" href="#">Personnaliser</a>
+    <button class="nav-toggle" data-action="toggle-mobile-nav" aria-label="Menu">☰</button>
+    <nav class="main-nav ${state.mobileNavOpen?'mobile-open':''}">
+      <a class="nav-link ${state.view==='landing'?'active':''}" data-action="go-landing" href="#">Accueil</a>
+      <a class="nav-link ${state.view==='customizer'?'active':''}" data-action="go-customizer" href="#">Personnaliser</a>
+      <a class="nav-link ${state.view==='cart'?'active':''}" data-action="go-cart" href="#">Panier${cCount?`<span class="cart-badge">${cCount}</span>`:''}</a>
+      <a class="nav-link ${state.view==='about'?'active':''}" data-action="go-about" href="#">À propos &amp; FAQ</a>
       ${u ? `<a class="nav-link ${state.view==='myorders'?'active':''}" data-action="go-myorders" href="#">Mes commandes</a>` : ''}
+      ${u ? `<a class="nav-link ${state.view==='account'?'active':''}" data-action="go-account" href="#">Mon compte</a>` : ''}
       ${u && u.isAdmin ? `<a class="nav-link ${state.view==='admin'?'active':''}" data-action="go-admin" href="#">Admin</a>` : ''}
-      ${u ? `
-        <span class="nav-user">
-          <span class="points-pill">★ ${u.points} pt${u.points>1?'s':''}</span>
-          ${u.username}
-        </span>
-        <a class="nav-link" data-action="logout" href="#">Déconnexion</a>
-      ` : `
-        <a class="nav-link ${state.view==='login'?'active':''}" data-action="go-login" href="#">Connexion</a>
-        <a class="nav-link ${state.view==='register'?'active':''}" data-action="go-register" href="#">Créer un compte</a>
-      `}
+      ${u ? `<span class="nav-user"><span class="points-pill">★ ${u.points} pt${u.points>1?'s':''}</span> ${u.email}</span><a class="nav-link" data-action="logout" href="#">Déconnexion</a>`
+          : `<a class="nav-link ${state.view==='login'?'active':''}" data-action="go-login" href="#">Connexion</a><a class="nav-link ${state.view==='register'?'active':''}" data-action="go-register" href="#">Créer un compte</a>`}
     </nav>
   </header>`;
 }
  
-/* ============================= RENDER: HOME ============================= */
-function renderHome(){
-  const cfg = state.config;
-  const price = calcPrice(cfg);
+/* ============================= RENDER: LANDING (style thelma.pet) ============================= */
+function renderLanding(){
   return `
   <section class="hero">
     <span class="eyebrow">Atelier sur mesure</span>
-    <h1>Composez votre bracelet brésilien</h1>
-    <p>Choisissez le nombre de fils, leurs couleurs, la forme du tressage, et ajoutez un pendentif si le cœur vous en dit. Chaque bracelet est nommé fil après fil.</p>
+    <h1>Bracelets brésiliens &amp; boucles d’oreille en pâte Fimo, faits main</h1>
+    <p>Choisissez vos fils et votre tressage, ou la couleur et la forme de vos boucles d’oreille. Chaque pièce est composée par vous, puis façonnée à la main.</p>
+    <div class="hero-cta"><button class="cta-btn" data-action="go-customizer">Composer ma pièce →</button></div>
   </section>
+  ${state.flash ? `<div class="flash-msg" style="max-width:520px; margin:0 auto 20px;">${state.flash}</div>` : ''}
  
+  <h2 class="section-title">Comment ça marche</h2>
+  <p class="section-sub">De l’idée à votre bijou, en quatre étapes simples.</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">Étape 01</div><h3>Choisissez votre pièce</h3><p>Bracelet brésilien ou boucles d’oreille en pâte Fimo.</p></div>
+    <div class="step-card"><div class="step-num">Étape 02</div><h3>Personnalisez-la</h3><p>Fils et tressage, ou couleur et forme, selon vos goûts.</p></div>
+    <div class="step-card"><div class="step-num">Étape 03</div><h3>Ajoutez une touche finale</h3><p>Pendentif pour le bracelet, taille d’attache pour les boucles.</p></div>
+    <div class="step-card"><div class="step-num">Étape 04</div><h3>Recevez votre bijou</h3><p>Façonné à la main puis envoyé chez vous.</p></div>
+  </div>
+ 
+  <div class="trust-bar">
+    <div class="big">100% fait main</div>
+    <p style="margin-top:8px; color:#EDE7DE;">Chaque bracelet est composé selon vos choix puis tressé à la main par notre atelier, envoyé sous quelques jours.</p>
+  </div>
+ 
+  <h2 class="section-title">Idées de modèles</h2>
+  <p class="section-sub">Envie d’inspiration ? Partez de l’un de ces modèles puis personnalisez-le comme vous le voulez.</p>
+  <div class="gallery-grid">
+    ${PRESETS.map((p,i)=>`
+      <div class="gallery-card">
+        ${buildPreviewSVG(p)}
+        <h3>${p.name}</h3>
+        <div class="price">à partir de ${eur(calcUnitPrice(p))}</div>
+        <button class="ghost-btn" data-action="load-preset" data-index="${i}">Personnaliser</button>
+      </div>`).join('')}
+  </div>
+ 
+  <h2 class="section-title">Nos boucles d’oreille en pâte Fimo</h2>
+  <p class="section-sub">Modelées et cuites à la main, vendues par paire, avec attache petite (puce) ou grande (crochet).</p>
+  <div class="gallery-grid">
+    ${EARRING_PRESETS.map((p,i)=>`
+      <div class="gallery-card">
+        ${buildEarringSVG(p)}
+        <h3>${p.name}</h3>
+        <div class="price">à partir de ${eur(calcEarringPrice(p))} la paire</div>
+        <button class="ghost-btn" data-action="load-earring-preset" data-index="${i}">Personnaliser</button>
+      </div>`).join('')}
+  </div>
+ 
+  <h2 class="section-title">Ils nous font confiance</h2>
+  <div class="testimonial-grid">
+    ${TESTIMONIALS.map(t=>`<div class="testimonial-card"><div class="avatar-initial">${t.name[0]}</div><p>« ${t.text} »</p><div class="who">${t.name}</div></div>`).join('')}
+  </div>
+ 
+  <h2 class="section-title">Restez informé(e)</h2>
+  <p class="section-sub">Nouveaux modèles, promotions et actualités de l’atelier — pas de spam, promis.</p>
+  <form class="newsletter-form" data-action="newsletter-submit">
+    <input type="email" name="email" placeholder="votre@email.com" required>
+    <button class="primary-btn small" type="submit" style="width:auto;">S’inscrire</button>
+  </form>`;
+}
+ 
+/* ============================= RENDER: CUSTOMIZER ============================= */
+function renderCustomizer(){
+  const isBracelet = state.activeProduct==='bracelet';
+  return `
+  <section class="hero" style="padding-top:30px; text-align:left;">
+    <span class="eyebrow">Atelier sur mesure</span>
+    <h1 style="text-align:left; margin:0 0 .3em;">${isBracelet ? 'Composez votre bracelet' : 'Composez vos boucles d’oreille'}</h1>
+    <p style="margin:0;">${isBracelet ? 'Choisissez le nombre de fils, leurs couleurs, la forme du tressage, et ajoutez un pendentif si le cœur vous en dit.' : 'Choisissez la couleur, la forme et la taille de l’attache : chaque paire est modelée à la main en pâte Fimo.'}</p>
+    <div class="product-toggle">
+      <button type="button" class="${isBracelet?'active':''}" data-action="switch-product" data-value="bracelet">🧵 Bracelet brésilien</button>
+      <button type="button" class="${!isBracelet?'active':''}" data-action="switch-product" data-value="earring">🌸 Boucles d’oreille Fimo</button>
+    </div>
+  </section>
   ${state.flash ? `<div class="flash-msg">${state.flash}</div>` : ''}
- 
+  ${isBracelet ? renderBraceletCustomizer() : renderEarringCustomizer()}`;
+}
+function renderBraceletCustomizer(){
+  const cfg = state.config, unitPrice = calcUnitPrice(cfg), total = unitPrice*(state.qty||1);
+  return `
   <div class="workshop">
     <div class="panel">
       <label class="field-label" for="thread-count">Nombre de fils : <strong>${cfg.threads.length}</strong> / 14</label>
       <input type="range" id="thread-count" min="1" max="14" value="${cfg.threads.length}" data-action="set-thread-count">
- 
       <div class="thread-grid">
-        ${cfg.threads.map((c,i)=>`
-          <label class="thread-chip">
-            <input type="color" value="${c}" data-action="set-thread-color" data-index="${i}">
-            <span>Fil ${i+1}</span>
-          </label>`).join('')}
+        ${cfg.threads.map((c,i)=>`<label class="thread-chip"><input type="color" value="${c}" data-action="set-thread-color" data-index="${i}"><span>Fil ${i+1}</span></label>`).join('')}
       </div>
       <button type="button" class="ghost-btn" data-action="randomize-colors">🎲 Couleurs aléatoires</button>
- 
       <div class="divider"></div>
- 
       <label class="field-label">Forme du tressage</label>
-      <div class="option-row">
-        ${BRAID_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.braid===o.id?'chip-active':''}" data-action="select-braid" data-value="${o.id}">${o.label}</button>`).join('')}
-      </div>
+      <div class="option-row">${BRAID_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.braid===o.id?'chip-active':''}" data-action="select-braid" data-value="${o.id}">${o.label}</button>`).join('')}</div>
       ${cfg.braid==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme souhaitée" value="${cfg.braidCustom||''}" data-action="set-braid-custom">` : ''}
- 
       <div class="divider"></div>
- 
-      <div class="toggle-row">
-        <input type="checkbox" id="pendant-toggle" data-action="toggle-pendant" ${cfg.pendant?'checked':''}>
-        <label for="pendant-toggle">Ajouter un pendentif (+ ${eur(2.8)})</label>
-      </div>
+      <div class="toggle-row"><input type="checkbox" id="pendant-toggle" data-action="toggle-pendant" ${cfg.pendant?'checked':''}><label for="pendant-toggle">Ajouter un pendentif (+ ${eur(2.8)})</label></div>
       ${cfg.pendant ? `
-        <div class="option-row">
-          ${PENDANT_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.pendantShape===o.id?'chip-active':''}" data-action="select-pendant-shape" data-value="${o.id}">${o.label}</button>`).join('')}
-        </div>
-        ${cfg.pendantShape==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme du pendentif" value="${cfg.pendantCustom||''}" data-action="set-pendant-custom">` : ''}
-      ` : ''}
- 
+        <div class="option-row">${PENDANT_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.pendantShape===o.id?'chip-active':''}" data-action="select-pendant-shape" data-value="${o.id}">${o.label}</button>`).join('')}</div>
+        ${cfg.pendantShape==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme du pendentif" value="${cfg.pendantCustom||''}" data-action="set-pendant-custom">` : ''}` : ''}
+      <div class="divider"></div>
+      <label class="field-label">Quantité</label>
+      <div class="qty-row"><input type="number" min="1" max="20" value="${state.qty||1}" data-action="set-qty"><span style="color:var(--ink-soft); font-size:.85rem;">bracelet(s) identique(s)</span></div>
       <div class="summary-card">
-        <div class="summary-row"><span>Fils</span><span>${cfg.threads.length}</span></div>
+        <div class="summary-row"><span>Prix unitaire</span><span>${eur(unitPrice)}</span></div>
         <div class="summary-row"><span>Tressage</span><span>${braidLabel(cfg)}</span></div>
         <div class="summary-row"><span>Pendentif</span><span>${pendantLabel(cfg)}</span></div>
-        <div class="summary-row total"><span>Total</span><span>${eur(price)}</span></div>
-        <div class="summary-row points"><span>Points fidélité gagnés</span><span>+${Math.floor(price/2)} pt</span></div>
-        <button class="primary-btn" data-action="place-order">Commander</button>
+        <div class="summary-row total"><span>Total (${state.qty||1})</span><span>${eur(total)}</span></div>
+        <div class="summary-row points"><span>Points fidélité gagnés</span><span>+${Math.floor(total/POINT_EARN_RATE)} pt</span></div>
+        <button class="primary-btn" data-action="add-to-cart">Ajouter au panier</button>
+        <button class="ghost-btn" style="width:100%; margin-top:10px; text-align:center;" data-action="save-wishlist">♡ Enregistrer dans ma liste d’envies</button>
       </div>
     </div>
+    <div class="panel preview-panel"><div id="preview">${buildPreviewSVG(cfg)}</div><div class="preview-caption">Aperçu indicatif du rendu final</div></div>
+  </div>`;
+}
+function renderEarringCustomizer(){
+  const cfg = state.earringConfig, unitPrice = calcEarringPrice(cfg), total = unitPrice*(state.qty||1);
+  return `
+  <div class="workshop">
+    <div class="panel">
+      <label class="field-label">Couleur de la pâte Fimo</label>
+      <input type="color" class="color-dot-input" value="${cfg.color}" data-action="set-earring-color">
+      <div class="divider"></div>
+      <label class="field-label">Forme</label>
+      <div class="option-row">${EARRING_SHAPES.map(o=>`<button type="button" class="chip ${cfg.shape===o.id?'chip-active':''}" data-action="select-earring-shape" data-value="${o.id}">${o.label}</button>`).join('')}</div>
+      ${cfg.shape==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme souhaitée" value="${cfg.shapeCustom||''}" data-action="set-earring-shape-custom">` : ''}
+      <div class="divider"></div>
+      <label class="field-label">Taille de l’attache</label>
+      <div class="option-row">${HOOK_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.hook===o.id?'chip-active':''}" data-action="select-earring-hook" data-value="${o.id}">${o.label}</button>`).join('')}</div>
+      <div class="divider"></div>
+      <label class="field-label">Quantité</label>
+      <div class="qty-row"><input type="number" min="1" max="20" value="${state.qty||1}" data-action="set-qty"><span style="color:var(--ink-soft); font-size:.85rem;">paire(s)</span></div>
+      <div class="summary-card">
+        <div class="summary-row"><span>Prix par paire</span><span>${eur(unitPrice)}</span></div>
+        <div class="summary-row"><span>Forme</span><span>${earringShapeLabel(cfg)}</span></div>
+        <div class="summary-row"><span>Attache</span><span>${hookLabel(cfg)}</span></div>
+        <div class="summary-row total"><span>Total (${state.qty||1})</span><span>${eur(total)}</span></div>
+        <div class="summary-row points"><span>Points fidélité gagnés</span><span>+${Math.floor(total/POINT_EARN_RATE)} pt</span></div>
+        <button class="primary-btn" data-action="add-earring-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="panel preview-panel"><div id="preview">${buildEarringSVG(cfg)}</div><div class="preview-caption">Aperçu indicatif — vendu par paire</div></div>
+  </div>`;
+}
  
-    <div class="panel preview-panel">
-      <div id="preview">${buildPreviewSVG(cfg)}</div>
-      <div class="preview-caption">Aperçu indicatif du rendu final</div>
+/* ============================= RENDER: CART / CHECKOUT ============================= */
+function renderCart(){
+  if(!state.cart.length){
+    return `<div class="empty-state"><h2>Votre panier est vide</h2><p>Composez votre premier bracelet depuis « Personnaliser ».</p>
+      <button class="primary-btn" style="max-width:260px; margin:16px auto 0;" data-action="go-customizer">Personnaliser un bracelet</button></div>`;
+  }
+  const subtotal = cartSubtotal();
+  return `
+  <h2 style="margin:30px 0 20px;">Votre panier</h2>
+  <div class="panel">
+    ${state.cart.map(i=>`
+      <div class="cart-item">
+        <div class="swatch-row">${itemSwatches(i)}</div>
+        <div class="item-meta"><strong>${i.type==='earring' ? 'Boucles d’oreille Fimo' : i.threads.length+' fils'}</strong> — ${i.type==='earring' ? earringShapeLabel(i)+' · '+hookLabel(i) : braidLabel(i)+' · '+pendantLabel(i)}<br><span class="mono">${eur(i.unitPrice)} / ${i.type==='earring'?'paire':'unité'}</span></div>
+        <div class="qty-stepper"><button type="button" data-action="cart-qty-dec" data-id="${i.itemId}">−</button><span class="mono">${i.qty}</span><button type="button" data-action="cart-qty-inc" data-id="${i.itemId}">+</button></div>
+        <div class="mono" style="min-width:80px; text-align:right;">${eur(i.unitPrice*i.qty)}</div>
+        <button type="button" class="remove-link" data-action="cart-remove" data-id="${i.itemId}">Retirer</button>
+      </div>`).join('')}
+    <div class="summary-card"><div class="summary-row total"><span>Sous-total</span><span>${eur(subtotal)}</span></div>
+      <button class="primary-btn" data-action="go-checkout">Passer à la commande</button></div>
+  </div>`;
+}
+function renderCheckout(){
+  const subtotal = Math.round(cartSubtotal()*100)/100;
+  const userPoints = state.currentUser ? state.currentUser.points : 0;
+  const maxRedeem = maxRedeemablePoints(subtotal, userPoints);
+  const redeem = Math.max(0, Math.min(state.checkoutRedeem||0, maxRedeem));
+  const discount = Math.round(redeem*POINT_REDEEM_VALUE*100)/100;
+  const total = Math.max(0, Math.round((subtotal-discount)*100)/100);
+  const u = state.currentUser;
+  return `
+  <h2 style="margin:30px 0 20px;">Finaliser la commande</h2>
+  <div class="checkout-grid">
+    <div class="panel">
+      <h3>Adresse de livraison</h3>
+      <form id="checkout-form" data-action="place-order-submit">
+        <label class="field-label" style="margin-top:14px;">Nom complet</label><input class="text-input" name="fullName" value="${u.fullName||''}" required>
+        <label class="field-label" style="margin-top:14px;">Adresse</label><input class="text-input" name="address" value="${u.address||''}" required>
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;"><label class="field-label" style="margin-top:14px;">Ville</label><input class="text-input" name="city" value="${u.city||''}" required></div>
+          <div style="flex:1;"><label class="field-label" style="margin-top:14px;">Code postal</label><input class="text-input" name="zip" value="${u.zip||''}" required></div>
+        </div>
+        <label class="field-label" style="margin-top:14px;">Téléphone</label><input class="text-input" name="phone" value="${u.phone||''}" required>
+        <label class="field-label" style="margin-top:14px;">Note pour l’atelier (optionnel)</label>
+        <textarea class="text-input" name="notes" rows="3" placeholder="Ex. : taille du poignet, précisions sur les couleurs…"></textarea>
+        <button class="primary-btn" type="submit">Confirmer et payer (démo)</button>
+      </form>
+    </div>
+    <div class="panel">
+      <h3>Récapitulatif</h3>
+      <div class="summary-row"><span>Sous-total</span><span>${eur(subtotal)}</span></div>
+      <div style="margin:14px 0;">
+        <label class="field-label">Utiliser mes points (solde : ${userPoints} pt, max ici : ${maxRedeem})</label>
+        <input class="text-input" type="number" min="0" max="${maxRedeem}" value="${redeem}" data-action="redeem-points-change">
+      </div>
+      <div class="summary-row"><span>Réduction fidélité</span><span>− ${eur(discount)}</span></div>
+      <div class="summary-row total"><span>Total à payer</span><span>${eur(total)}</span></div>
+      <div class="summary-row points"><span>Points gagnés sur cette commande</span><span>+${Math.floor(total/POINT_EARN_RATE)} pt</span></div>
+      <p style="font-size:.76rem; color:var(--ink-soft); margin-top:14px;">Paiement de démonstration — aucune transaction réelle n’est effectuée pour l’instant.</p>
     </div>
   </div>`;
 }
@@ -563,16 +750,16 @@ function renderLogin(){
   return `
   <div class="panel auth-panel">
     <h2>Connexion</h2>
+    ${state.pendingCheckout ? `<div class="flash-msg">Connectez-vous pour finaliser votre commande.</div>` : ''}
+    ${state.flash ? `<div class="flash-msg">${state.flash}</div>` : ''}
     ${state.authError ? `<div class="error-msg">${state.authError}</div>` : ''}
     <form data-action="login-submit">
-      <label>Nom d'utilisateur</label>
-      <input name="username" required autocomplete="username">
-      <label>Mot de passe</label>
-      <input name="password" type="password" required autocomplete="current-password">
+      <label>E-mail</label><input name="email" type="email" required autocomplete="email">
+      <label>Mot de passe</label><input name="password" type="password" required autocomplete="current-password">
       <button class="primary-btn" type="submit">Se connecter</button>
     </form>
+    <p class="hint"><a href="#" data-action="forgot-password">Mot de passe oublié ?</a></p>
     <p class="hint">Pas encore de compte ? <a href="#" data-action="go-register">Créer un compte</a></p>
-    <p class="hint">Démo administrateur : identifiant <strong>admin</strong> / mot de passe <strong>admin123</strong>.</p>
   </div>`;
 }
 function renderRegister(){
@@ -581,126 +768,195 @@ function renderRegister(){
     <h2>Créer un compte</h2>
     ${state.authError ? `<div class="error-msg">${state.authError}</div>` : ''}
     <form data-action="register-submit">
-      <label>Nom d'utilisateur</label>
-      <input name="username" required autocomplete="username">
-      <label>Mot de passe</label>
-      <input name="password" type="password" required autocomplete="new-password">
+      <label>Nom complet</label><input name="fullName" required>
+      <label>E-mail</label><input name="email" type="email" required autocomplete="email">
+      <label>Mot de passe (6 caractères min.)</label><input name="password" type="password" required autocomplete="new-password">
+      <label>Confirmer le mot de passe</label><input name="confirmPassword" type="password" required autocomplete="new-password">
       <button class="primary-btn" type="submit">Créer mon compte</button>
     </form>
     <p class="hint">Déjà inscrit(e) ? <a href="#" data-action="go-login">Se connecter</a></p>
   </div>`;
 }
  
-/* ============================= RENDER: MY ORDERS ============================= */
-function renderMyOrders(){
-  if(!state.myOrders.length){
-    return `<div class="empty-state"><h2>Aucune commande pour l'instant</h2><p>Composez votre premier bracelet depuis « Personnaliser ».</p></div>`;
-  }
+/* ============================= RENDER: ACCOUNT ============================= */
+function renderAccount(){
+  const u = state.currentUser, tab = state.accountTab;
   return `
-  <h2 style="margin:20px 0;">Mes commandes</h2>
-  ${state.myOrders.map(o=>`
-    <div class="order-card" data-action="view-order" data-id="${o.id}">
-      <div class="order-top">
-        <span class="order-id">${o.id}</span>
-        <span class="badge badge-${o.status}">${STATUS_LABELS[o.status]}</span>
-      </div>
-      <div style="margin-top:8px; color:var(--ink-soft); font-size:.88rem;">
-        ${o.threads.length} fils · ${o.pendant ? 'avec pendentif' : 'sans pendentif'} · ${eur(o.price)} · ${fmtDate(o.createdAt)}
-      </div>
+  <h2 style="margin:30px 0 20px;">Mon compte</h2>
+  ${state.flash ? `<div class="flash-msg">${state.flash}</div>` : ''}
+  ${state.authError ? `<div class="error-msg">${state.authError}</div>` : ''}
+  <div class="account-tabs">
+    <button class="tab-btn ${tab==='profil'?'active':''}" data-action="account-tab" data-tab="profil">Profil &amp; adresse</button>
+    <button class="tab-btn ${tab==='securite'?'active':''}" data-action="account-tab" data-tab="securite">Mot de passe</button>
+    <button class="tab-btn ${tab==='points'?'active':''}" data-action="account-tab" data-tab="points">Points fidélité</button>
+    <button class="tab-btn ${tab==='wishlist'?'active':''}" data-action="account-tab" data-tab="wishlist">Liste d’envies</button>
+  </div>
+  <div class="panel">${renderAccountTabContent(tab, u)}</div>`;
+}
+function renderAccountTabContent(tab, u){
+  if(tab==='securite'){
+    return `<h3>Changer le mot de passe</h3>
+    <form data-action="password-change-submit" style="max-width:420px;">
+      <label class="field-label" style="margin-top:14px;">Mot de passe actuel</label><input class="text-input" type="password" name="oldPassword" required>
+      <label class="field-label" style="margin-top:14px;">Nouveau mot de passe</label><input class="text-input" type="password" name="newPassword" required>
+      <label class="field-label" style="margin-top:14px;">Confirmer le nouveau mot de passe</label><input class="text-input" type="password" name="confirmPassword" required>
+      <button class="primary-btn" type="submit" style="max-width:220px;">Mettre à jour</button>
+    </form>`;
+  }
+  if(tab==='points'){
+    return `<h3>Vos points fidélité</h3>
+    <p style="font-size:2rem; font-family:'Fraunces',serif; font-weight:700; color:var(--teal); margin:10px 0;">★ ${u.points} pt</p>
+    <p style="color:var(--ink-soft); font-size:.9rem;">Vous gagnez 1 point tous les ${POINT_EARN_RATE} € dépensés, et chaque point vaut ${POINT_REDEEM_VALUE.toFixed(2).replace('.',',')} € de réduction à utiliser lors du paiement.</p>`;
+  }
+  if(tab==='wishlist'){
+    if(!state.wishlist.length) return `<p style="color:var(--ink-soft);">Aucun modèle enregistré pour l’instant.</p>`;
+    return state.wishlist.map(w=>`
+      <div class="cart-item">
+        ${buildPreviewSVG(w.cfg).replace('<svg ','<svg style="width:60px;height:auto;" ')}
+        <div class="item-meta"><strong>${w.name}</strong><br><span class="mono" style="font-size:.75rem;">Enregistré le ${fmtDate(w.savedAt)}</span></div>
+        <button class="ghost-btn" data-action="wishlist-load" data-id="${w.id}">Personnaliser</button>
+        <button type="button" class="remove-link" data-action="wishlist-remove" data-id="${w.id}">Supprimer</button>
+      </div>`).join('');
+  }
+  return `<h3>Informations de livraison</h3>
+  <form data-action="profile-save-submit" style="max-width:480px;">
+    <label class="field-label" style="margin-top:14px;">Nom complet</label><input class="text-input" name="fullName" value="${u.fullName||''}">
+    <label class="field-label" style="margin-top:14px;">Adresse</label><input class="text-input" name="address" value="${u.address||''}">
+    <div style="display:flex; gap:10px;">
+      <div style="flex:1;"><label class="field-label" style="margin-top:14px;">Ville</label><input class="text-input" name="city" value="${u.city||''}"></div>
+      <div style="flex:1;"><label class="field-label" style="margin-top:14px;">Code postal</label><input class="text-input" name="zip" value="${u.zip||''}"></div>
     </div>
-  `).join('')}`;
+    <label class="field-label" style="margin-top:14px;">Téléphone</label><input class="text-input" name="phone" value="${u.phone||''}">
+    <button class="primary-btn" type="submit" style="max-width:220px;">Enregistrer</button>
+  </form>`;
 }
  
-/* ============================= RENDER: ORDER DETAIL ============================= */
+/* ============================= RENDER: MY ORDERS / ORDER DETAIL ============================= */
+function renderMyOrders(){
+  if(!state.myOrders.length) return `<div class="empty-state"><h2>Aucune commande pour l'instant</h2><p>Composez votre premier bracelet depuis « Personnaliser ».</p></div>`;
+  return `<h2 style="margin:30px 0 20px;">Mes commandes</h2>
+  ${state.myOrders.map(o=>`
+    <div class="order-card" data-action="view-order" data-id="${o.id}">
+      <div class="order-top"><span class="order-id">${o.id}</span><span class="badge badge-${o.status}">${STATUS_LABELS[o.status]}</span></div>
+      <div style="margin-top:8px; color:var(--ink-soft); font-size:.88rem;">${(o.items||[]).length} article(s) · ${eur(o.total||0)} · ${fmtDate(o.createdAt)}</div>
+    </div>`).join('')}`;
+}
 function renderOrder(){
   const o = state.currentOrderData;
-  if(!o){
-    return `<div class="empty-state"><h2>Commande introuvable</h2><a href="#" data-action="go-home">Retour à l'accueil</a></div>`;
-  }
+  if(!o) return `<div class="empty-state"><h2>Commande introuvable</h2><a href="#" data-action="go-landing">Retour à l'accueil</a></div>`;
   const stepIndex = STATUS_ORDER.indexOf(o.status);
   return `
   <div class="panel order-detail">
     <span class="eyebrow">Confirmation de commande</span>
-    <h2>${o.id}</h2>
-    <p style="color:var(--ink-soft); font-size:.85rem;">Passée le ${fmtDate(o.createdAt)}</p>
- 
-    <div class="status-track">
-      ${STATUS_ORDER.map((s,i)=>`
-        <div class="status-step ${i<=stepIndex?'done':''}">
-          <div class="status-dot"></div>
-          ${STATUS_LABELS[s]}
-        </div>`).join('')}
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <h2 style="margin:0;">${o.id}</h2>
+      <span class="live-tag"><span class="live-dot"></span> Statut en direct</span>
     </div>
- 
-    <div id="preview" style="max-width:220px; margin:0 auto 18px;">${buildPreviewSVG({threads:o.threads, braid:o.braid, pendant:o.pendant, pendantShape:o.pendantShape})}</div>
- 
-    <div class="order-summary-line"><span>Nombre de fils</span><span>${o.threads.length}</span></div>
-    <div class="order-summary-line"><span>Tressage</span><span>${o.braid==='autre' ? (o.braidCustom||'Autre') : (BRAID_OPTIONS.find(b=>b.id===o.braid)||{}).label}</span></div>
-    <div class="order-summary-line"><span>Pendentif</span><span>${o.pendant ? (o.pendantShape==='autre' ? (o.pendantCustom||'Autre') : (PENDANT_OPTIONS.find(p=>p.id===o.pendantShape)||{}).label) : 'Aucun'}</span></div>
-    <div class="order-summary-line"><span>Total payé</span><span>${eur(o.price)}</span></div>
-    <div class="order-summary-line"><span>Points fidélité gagnés</span><span>+${Math.floor(o.price/2)} pt</span></div>
- 
-    <p style="font-size:.78rem; color:var(--ink-soft); margin-top:16px;">Le statut se met à jour automatiquement toutes les quelques secondes.</p>
-    <button class="primary-btn secondary" data-action="go-home">Composer un nouveau bracelet</button>
+    <p style="color:var(--ink-soft); font-size:.85rem;">Passée le ${fmtDate(o.createdAt)}</p>
+    ${o.status==='annulee' ? `<div class="cancelled-banner">Cette commande a été annulée.</div>` : `
+    <div class="status-track">${STATUS_ORDER.map((s,i)=>`<div class="status-step ${i<=stepIndex?'done':''}"><div class="status-dot"></div>${STATUS_LABELS[s]}</div>`).join('')}</div>`}
+    ${(o.items||[]).map(it=>`
+      <div class="item-row">
+        <div class="swatch-row">${itemSwatches(it)}</div>
+        <div class="item-meta"><strong>${it.type==='earring' ? 'Boucles d’oreille Fimo' : it.threads.length+' fils'}</strong> — ${it.type==='earring' ? earringShapeLabel(it)+' · '+hookLabel(it) : braidLabel(it)+' · '+pendantLabel(it)} · ×${it.qty}</div>
+        <div class="mono">${eur(it.unitPrice*it.qty)}</div>
+      </div>`).join('')}
+    ${o.shipping ? `<div class="divider"></div><h3 style="font-size:1rem;">Livraison</h3><p style="color:var(--ink-soft); font-size:.88rem;">${o.shipping.fullName}<br>${o.shipping.address}<br>${o.shipping.zip} ${o.shipping.city}<br>${o.shipping.phone}</p>${o.notes ? `<p style="color:var(--ink-soft); font-size:.85rem;"><em>Note : ${o.notes}</em></p>` : ''}` : ''}
+    <div class="divider"></div>
+    <div class="order-summary-line"><span>Sous-total</span><span>${eur(o.subtotal||0)}</span></div>
+    ${o.discount ? `<div class="order-summary-line"><span>Réduction fidélité (${o.pointsRedeemed} pt)</span><span>− ${eur(o.discount)}</span></div>` : ''}
+    <div class="order-summary-line"><span>Total payé</span><span>${eur(o.total||0)}</span></div>
+    <div class="order-summary-line"><span>Points fidélité gagnés</span><span>+${o.pointsEarned||0} pt</span></div>
+    ${o.status==='en_attente_paiement' ? `<button class="ghost-btn" style="width:100%; margin-top:16px;" data-action="cancel-order" data-id="${o.id}">Annuler cette commande</button>` : ''}
+    <button class="primary-btn secondary" data-action="go-customizer">Composer un nouveau bracelet</button>
   </div>`;
+}
+ 
+/* ============================= RENDER: ABOUT / FAQ ============================= */
+function renderAbout(){
+  return `<h2 style="margin:30px 0 20px;">À propos de l’atelier</h2>
+  <div class="panel"><p>Nœuds &amp; Fils est un atelier de bracelets brésiliens tressés à la main et de boucles d’oreille modelées en pâte Fimo. Chaque bracelet est composé fil par fil selon vos choix (nombre de fils, couleurs, tressage, pendentif optionnel), et chaque paire de boucles d’oreille selon la couleur, la forme et la taille d’attache que vous choisissez.</p>
+  <p>Les commandes sont préparées après validation, puis expédiées. Vous pouvez suivre l’état de votre commande en temps réel depuis « Mes commandes ». Le programme de fidélité (2 € = 1 point) est commun aux deux gammes de produits.</p></div>
+  <h2 class="section-title">Questions fréquentes</h2>
+  ${FAQ_ITEMS.map(f=>`<details class="faq-item"><summary>${f.q}</summary><p>${f.a}</p></details>`).join('')}`;
 }
  
 /* ============================= RENDER: ADMIN ============================= */
 function renderAdmin(){
-  if(!state.currentUser || !state.currentUser.isAdmin){
-    return `<div class="empty-state"><h2>Accès réservé</h2><p>Cette page est réservée aux administrateurs.</p></div>`;
-  }
-  if(!state.allOrders.length){
-    return `<div class="empty-state"><h2>Aucune commande enregistrée</h2></div>`;
-  }
+  const orders = state.allOrders, stats = computeStats(orders);
+  const filtered = orders.filter(o=> state.adminFilter==='all' || o.status===state.adminFilter);
   return `
-  <h2 style="margin:20px 0;">Toutes les commandes</h2>
+  <h2 style="margin:30px 0 6px;">Tableau de bord admin</h2>
+  <div class="admin-note">Cette page n’est visible que par les comptes marqués <strong>isAdmin&nbsp;=&nbsp;true</strong> dans Firestore. Les données sont mises à jour en direct.</div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num">${eur(stats.revenue)}</div><div class="lab">Chiffre d’affaires (hors annulées)</div></div>
+    <div class="stat-card"><div class="num">${stats.count}</div><div class="lab">Commandes totales</div></div>
+    <div class="stat-card"><div class="num">${stats.byStatus.en_attente_paiement}</div><div class="lab">En attente de paiement</div></div>
+    <div class="stat-card"><div class="num">${stats.byStatus.en_preparation}</div><div class="lab">En préparation</div></div>
+    <div class="stat-card"><div class="num">${stats.byStatus.livree}</div><div class="lab">Livrées</div></div>
+    <div class="stat-card"><div class="num">${state.adminCustomerCount}</div><div class="lab">Comptes clients</div></div>
+    <div class="stat-card"><div class="num">${state.adminNewsletterCount}</div><div class="lab">Abonnés newsletter</div></div>
+  </div>
+  <div class="admin-toolbar">
+    <input id="admin-search-input" type="text" placeholder="Rechercher (n° commande, e-mail)…">
+    <select data-action="admin-filter-change">
+      <option value="all" ${state.adminFilter==='all'?'selected':''}>Tous les statuts</option>
+      ${Object.keys(STATUS_LABELS).map(s=>`<option value="${s}" ${state.adminFilter===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}
+    </select>
+    <button class="ghost-btn" data-action="admin-export-csv">⬇ Exporter en CSV</button>
+  </div>
+  ${!filtered.length ? `<div class="empty-state"><h2>Aucune commande</h2></div>` : `
   <div style="overflow-x:auto;">
-  <table class="admin-table">
-    <thead>
-      <tr>
-        <th>Commande</th><th>Client</th><th>Fils</th><th>Tressage</th><th>Pendentif</th><th>Prix</th><th>Date</th><th>Statut</th>
-      </tr>
-    </thead>
+  <table class="admin-table" id="admin-orders-table">
+    <thead><tr><th>Commande</th><th>Client</th><th>Articles</th><th>Total</th><th>Date</th><th>Statut</th><th></th></tr></thead>
     <tbody>
-      ${state.allOrders.map(o=>`
-        <tr>
+      ${filtered.map(o=>`
+        <tr data-search="${(o.id+' '+(o.email||'')).toLowerCase()}">
           <td class="mono">${o.id}</td>
-          <td>${o.username}</td>
-          <td><div class="swatch-row">${o.threads.map(c=>`<span class="swatch-dot" style="background:${c}"></span>`).join('')}</div></td>
-          <td>${o.braid==='autre' ? (o.braidCustom||'Autre') : (BRAID_OPTIONS.find(b=>b.id===o.braid)||{}).label}</td>
-          <td>${o.pendant ? (o.pendantShape==='autre' ? (o.pendantCustom||'Autre') : (PENDANT_OPTIONS.find(p=>p.id===o.pendantShape)||{}).label) : '—'}</td>
-          <td>${eur(o.price)}</td>
+          <td>${o.email||'—'}</td>
+          <td>${(o.items||[]).map(it=> `<div class="swatch-row">${itemSwatches(it)}</div>`).join('')}</td>
+          <td>${eur(o.total||0)}</td>
           <td>${fmtDate(o.createdAt)}</td>
-          <td>
-            <select data-action="admin-status-change" data-id="${o.id}">
-              ${STATUS_ORDER.map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}
-            </select>
-          </td>
-        </tr>
-      `).join('')}
+          <td><select data-action="admin-status-change" data-id="${o.id}">${Object.keys(STATUS_LABELS).map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select></td>
+          <td><button class="icon-btn" data-action="admin-delete-order" data-id="${o.id}">Supprimer</button></td>
+        </tr>`).join('')}
     </tbody>
-  </table>
-  </div>`;
+  </table></div>`}`;
 }
  
 /* ============================= MASTER RENDER ============================= */
 function render(){
+  if(!state.authReady){ document.getElementById('app').innerHTML = `<div class="loading-screen">Chargement de l’atelier…</div>`; return; }
   let body='';
-  if(state.view==='home') body = renderHome();
+  if(state.view==='landing') body = renderLanding();
+  else if(state.view==='customizer') body = renderCustomizer();
+  else if(state.view==='cart') body = renderCart();
+  else if(state.view==='checkout') body = renderCheckout();
   else if(state.view==='login') body = renderLogin();
   else if(state.view==='register') body = renderRegister();
+  else if(state.view==='account') body = renderAccount();
   else if(state.view==='myorders') body = renderMyOrders();
   else if(state.view==='order') body = renderOrder();
+  else if(state.view==='about') body = renderAbout();
   else if(state.view==='admin') body = renderAdmin();
  
   document.getElementById('app').innerHTML = `
     ${renderHeader()}
     <main>${body}</main>
     <footer>
-      Démo pédagogique — les comptes et commandes créés ici sont stockés côté serveur et visibles par toute personne ouvrant cette page.
-      N'utilisez pas de mot de passe réel. Compte administrateur de démonstration : <strong>admin</strong> / <strong>admin123</strong>.
+      <div class="foot-links"><a href="#" data-action="go-landing">Accueil</a><a href="#" data-action="go-customizer">Personnaliser</a><a href="#" data-action="go-about">À propos &amp; FAQ</a></div>
+      Comptes et paiements sécurisés par Firebase. Vos commandes sont stockées dans une base de données privée, invisible des autres clients.
     </footer>`;
+ 
+  if(state.view==='admin'){
+    const searchInput = document.getElementById('admin-search-input');
+    if(searchInput){
+      searchInput.addEventListener('input', ()=>{
+        const q = searchInput.value.toLowerCase();
+        document.querySelectorAll('#admin-orders-table tbody tr').forEach(tr=>{ tr.style.display = (tr.dataset.search||'').includes(q) ? '' : 'none'; });
+      });
+    }
+  }
 }
  
 /* ============================= EVENT DELEGATION ============================= */
@@ -708,39 +964,45 @@ document.addEventListener('click', async (e)=>{
   const target = e.target.closest('[data-action]');
   if(!target) return;
   const action = target.dataset.action;
- 
-  if(['go-home','go-login','go-register','go-myorders','go-admin','logout','randomize-colors',
-      'select-braid','select-pendant-shape','toggle-pendant','place-order','view-order'].includes(action)
-      || target.tagName==='A' || target.closest('.order-card') ){
-    e.preventDefault();
-  }
+  if(target.tagName==='A' || target.closest('.order-card') || ['toggle-mobile-nav','randomize-colors','select-braid','select-pendant-shape','add-to-cart','save-wishlist','cart-qty-inc','cart-qty-dec','cart-remove','go-checkout','account-tab','wishlist-load','wishlist-remove','cancel-order','admin-export-csv','admin-delete-order','load-preset','load-earring-preset','forgot-password','switch-product','select-earring-shape','select-earring-hook','add-earring-to-cart'].includes(action)){ e.preventDefault(); }
  
   switch(action){
-    case 'go-home': await goTo('home'); break;
+    case 'go-landing': await goTo('landing'); break;
+    case 'go-customizer': await goTo('customizer'); break;
+    case 'go-cart': await goTo('cart'); break;
+    case 'go-checkout': await goTo('checkout'); break;
     case 'go-login': state.authError=null; await goTo('login'); break;
     case 'go-register': state.authError=null; await goTo('register'); break;
+    case 'go-account': await goTo('account'); break;
     case 'go-myorders': await goTo('myorders'); break;
     case 'go-admin': await goTo('admin'); break;
-    case 'logout': handleLogout(); break;
-    case 'randomize-colors':
-      state.config.threads = state.config.threads.map(()=> PALETTE[Math.floor(Math.random()*PALETTE.length)]);
-      render();
-      break;
-    case 'select-braid':
-      state.config.braid = target.dataset.value;
-      render();
-      break;
-    case 'select-pendant-shape':
-      state.config.pendantShape = target.dataset.value;
-      render();
-      break;
-    case 'place-order':
-      state.loading=true;
-      await placeOrder();
-      break;
-    case 'view-order': {
-      const card = target.closest('[data-action="view-order"]') || target;
-      await goTo('order', {orderId: card.dataset.id});
+    case 'go-about': await goTo('about'); break;
+    case 'logout': await handleLogout(); break;
+    case 'toggle-mobile-nav': state.mobileNavOpen=!state.mobileNavOpen; render(); break;
+    case 'randomize-colors': state.config.threads = state.config.threads.map(()=> PALETTE[Math.floor(Math.random()*PALETTE.length)]); render(); break;
+    case 'select-braid': state.config.braid = target.dataset.value; render(); break;
+    case 'select-pendant-shape': state.config.pendantShape = target.dataset.value; render(); break;
+    case 'add-to-cart': addToCart(); break;
+    case 'save-wishlist': await saveToWishlist(); break;
+    case 'cart-qty-inc': changeCartQty(target.dataset.id, 1); break;
+    case 'cart-qty-dec': changeCartQty(target.dataset.id, -1); break;
+    case 'cart-remove': removeFromCart(target.dataset.id); break;
+    case 'account-tab': state.accountTab = target.dataset.tab; state.flash=null; state.authError=null; render(); break;
+    case 'wishlist-load': { const w = state.wishlist.find(x=> x.id===target.dataset.id); if(w){ state.config = JSON.parse(JSON.stringify(w.cfg)); await goTo('customizer'); } break; }
+    case 'wishlist-remove': await removeWishlistItem(target.dataset.id); break;
+    case 'cancel-order': await cancelOrder(target.dataset.id); break;
+    case 'admin-export-csv': exportOrdersCSV(state.allOrders); break;
+    case 'admin-delete-order': await handleAdminDelete(target.dataset.id); break;
+    case 'load-preset': { const p = PRESETS[parseInt(target.dataset.index,10)]; if(p){ state.config = JSON.parse(JSON.stringify(p)); state.activeProduct='bracelet'; await goTo('customizer'); } break; }
+    case 'load-earring-preset': { const p = EARRING_PRESETS[parseInt(target.dataset.index,10)]; if(p){ state.earringConfig = JSON.parse(JSON.stringify(p)); state.activeProduct='earring'; await goTo('customizer'); } break; }
+    case 'switch-product': state.activeProduct = target.dataset.value; render(); break;
+    case 'select-earring-shape': state.earringConfig.shape = target.dataset.value; render(); break;
+    case 'select-earring-hook': state.earringConfig.hook = target.dataset.value; render(); break;
+    case 'add-earring-to-cart': addEarringToCart(); break;
+    case 'view-order': { const card = target.closest('[data-action="view-order"]') || target; await goTo('order', {orderId: card.dataset.id}); break; }
+    case 'forgot-password': {
+      const emailInput = document.querySelector('input[name="email"]');
+      await handleForgotPassword(emailInput ? emailInput.value.trim() : '');
       break;
     }
   }
@@ -752,55 +1014,52 @@ document.addEventListener('change', async (e)=>{
     const n = parseInt(target.value,10);
     const threads = state.config.threads.slice(0,n);
     while(threads.length < n){ threads.push(PALETTE[threads.length % PALETTE.length]); }
-    state.config.threads = threads;
-    render();
-    return;
+    state.config.threads = threads; render(); return;
   }
-  if(target.dataset && target.dataset.action==='set-thread-color'){
-    const i = parseInt(target.dataset.index,10);
-    state.config.threads[i] = target.value;
-    render();
-    return;
-  }
-  if(target.dataset && target.dataset.action==='set-braid-custom'){
-    state.config.braidCustom = target.value;
-    return;
-  }
-  if(target.dataset && target.dataset.action==='set-pendant-custom'){
-    state.config.pendantCustom = target.value;
-    return;
-  }
-  if(target.dataset && target.dataset.action==='toggle-pendant'){
-    state.config.pendant = target.checked;
-    render();
-    return;
-  }
-  if(target.dataset && target.dataset.action==='admin-status-change'){
-    await handleAdminStatusChange(target.dataset.id, target.value);
-    return;
-  }
+  if(target.dataset.action==='set-thread-color'){ state.config.threads[parseInt(target.dataset.index,10)] = target.value; render(); return; }
+  if(target.dataset.action==='set-braid-custom'){ state.config.braidCustom = target.value; return; }
+  if(target.dataset.action==='set-pendant-custom'){ state.config.pendantCustom = target.value; return; }
+  if(target.dataset.action==='toggle-pendant'){ state.config.pendant = target.checked; render(); return; }
+  if(target.dataset.action==='set-qty'){ state.qty = Math.max(1, Math.min(20, parseInt(target.value,10)||1)); render(); return; }
+  if(target.dataset.action==='set-earring-color'){ state.earringConfig.color = target.value; render(); return; }
+  if(target.dataset.action==='set-earring-shape-custom'){ state.earringConfig.shapeCustom = target.value; return; }
+  if(target.dataset.action==='redeem-points-change'){ state.checkoutRedeem = Math.max(0, parseInt(target.value,10)||0); render(); return; }
+  if(target.dataset.action==='admin-status-change'){ await handleAdminStatusChange(target.dataset.id, target.value); return; }
+  if(target.dataset.action==='admin-filter-change'){ state.adminFilter = target.value; render(); return; }
 });
  
 document.addEventListener('submit', async (e)=>{
   const target = e.target.closest('[data-action]');
   if(!target) return;
   e.preventDefault();
-  const action = target.dataset.action;
-  const fd = new FormData(target);
-  if(action==='login-submit'){
-    await handleLogin((fd.get('username')||'').trim(), fd.get('password')||'');
+  const action = target.dataset.action, fd = new FormData(target);
+  if(action==='login-submit'){ await handleLogin((fd.get('email')||'').trim(), fd.get('password')||''); }
+  if(action==='register-submit'){ await handleRegister((fd.get('email')||'').trim(), fd.get('password')||'', fd.get('confirmPassword')||'', (fd.get('fullName')||'').trim()); }
+  if(action==='place-order-submit'){
+    const shipping = {fullName:fd.get('fullName')||'', address:fd.get('address')||'', city:fd.get('city')||'', zip:fd.get('zip')||'', phone:fd.get('phone')||''};
+    await placeOrderFromCart(shipping, fd.get('notes')||'');
   }
-  if(action==='register-submit'){
-    await handleRegister((fd.get('username')||'').trim(), fd.get('password')||'');
-  }
+  if(action==='profile-save-submit'){ await saveProfile({fullName:fd.get('fullName')||'', address:fd.get('address')||'', city:fd.get('city')||'', zip:fd.get('zip')||'', phone:fd.get('phone')||''}); }
+  if(action==='password-change-submit'){ await changePasswordFlow(fd.get('oldPassword')||'', fd.get('newPassword')||'', fd.get('confirmPassword')||''); }
+  if(action==='newsletter-submit'){ await subscribeNewsletter((fd.get('email')||'').trim()); }
 });
  
-/* ============================= INIT ============================= */
-(async function init(){
-  await ensureAdminAccount();
-  render();
-})();
+/* ============================= AUTH STATE / INIT ============================= */
+onAuthStateChanged(auth, async (user)=>{
+  if(user){
+    let rec = await getUserDoc(user.uid);
+    if(!rec){
+      rec = {email:user.email, fullName:'', address:'', city:'', zip:'', phone:'', points:0, isAdmin:false, createdAt:new Date().toISOString()};
+      await createUserDoc(user.uid, rec);
+    }
+    state.currentUser = {uid:user.uid, email:user.email, points:rec.points||0, isAdmin:!!rec.isAdmin, fullName:rec.fullName||'', address:rec.address||'', city:rec.city||'', zip:rec.zip||'', phone:rec.phone||''};
+  } else {
+    state.currentUser = null;
+  }
+  state.authReady = true;
+  if(state.pendingCheckout && state.currentUser){ state.pendingCheckout=false; await goTo('checkout'); }
+  else { render(); }
+});
 </script>
 </body>
 </html>
- 
