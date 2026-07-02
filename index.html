@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nœuds &amp; Fils — Bracelets brésiliens sur mesure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EFE7D8;
+    --panel:#FFFDF8;
+    --ink:#241F1C;
+    --ink-soft:#6b6255;
+    --coral:#E85D4C;
+    --teal:#2A9D8F;
+    --mustard:#E9B44C;
+    --plum:#6B4C6B;
+    --navy:#2B3A55;
+    --gold:#C9A227;
+    --line:rgba(36,31,28,0.14);
+    --radius:16px;
+    --shadow:0 10px 30px rgba(36,31,28,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, rgba(232,93,76,0.08), transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(42,157,143,0.10), transparent 45%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0 0 .3em 0; font-weight:600;}
+  .mono{font-family:'DM Mono', monospace;}
+  a{color:var(--navy);}
+  button{font-family:inherit;}
+ 
+  /* ---------- Layout shells ---------- */
+  .site-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; border-bottom:1px solid var(--line);
+    background:rgba(255,253,248,0.7); backdrop-filter:blur(6px);
+    position:sticky; top:0; z-index:20; flex-wrap:wrap; gap:12px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; cursor:pointer;}
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    background:conic-gradient(var(--coral),var(--mustard),var(--teal),var(--plum),var(--coral));
+    box-shadow:inset 0 0 0 6px var(--panel);
+  }
+  .brand-name{font-family:'Fraunces', serif; font-weight:700; font-size:1.25rem; letter-spacing:.2px;}
+  .brand-tag{font-size:.72rem; color:var(--ink-soft); letter-spacing:.4px; text-transform:uppercase;}
+  nav.main-nav{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .nav-link{
+    padding:8px 14px; border-radius:999px; font-size:.92rem; cursor:pointer;
+    border:1px solid transparent; color:var(--ink); text-decoration:none;
+  }
+  .nav-link:hover{background:rgba(36,31,28,0.06);}
+  .nav-link.active{background:var(--ink); color:var(--panel);}
+  .nav-user{display:flex; align-items:center; gap:10px; font-size:.85rem; color:var(--ink-soft);}
+  .points-pill{
+    background:var(--mustard); color:var(--ink); padding:4px 10px; border-radius:999px;
+    font-family:'DM Mono', monospace; font-size:.78rem; font-weight:500;
+  }
+ 
+  main{max-width:1180px; margin:0 auto; padding:28px 24px 80px;}
+ 
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:1.5px; font-size:.72rem; color:var(--coral);
+    font-weight:600; display:inline-block; margin-bottom:8px;
+  }
+  .hero{padding:28px 4px 8px;}
+  .hero p{max-width:560px; color:var(--ink-soft); font-size:1rem;}
+ 
+  .workshop{display:grid; grid-template-columns:1.35fr 1fr; gap:22px; align-items:start; margin-top:18px;}
+  @media (max-width:880px){ .workshop{grid-template-columns:1fr;} }
+ 
+  .panel{
+    background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow);
+    border:1px solid var(--line); padding:26px;
+  }
+  .panel + .panel{margin-top:20px;}
+ 
+  .field-label{display:block; font-weight:600; margin-bottom:10px; font-size:.95rem;}
+  input[type=range]{width:100%; accent-color:var(--coral);}
+ 
+  .thread-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(70px,1fr)); gap:12px;
+    margin:14px 0 10px;
+  }
+  .thread-chip{
+    display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer;
+    font-size:.72rem; color:var(--ink-soft);
+  }
+  .thread-chip input[type=color]{
+    width:40px; height:40px; border-radius:50%; border:3px solid var(--panel);
+    box-shadow:0 0 0 2px var(--line); cursor:pointer; padding:0; background:none;
+  }
+  .thread-chip input[type=color]::-webkit-color-swatch-wrapper{padding:0; border-radius:50%;}
+  .thread-chip input[type=color]::-webkit-color-swatch{border:none; border-radius:50%;}
+ 
+  .ghost-btn{
+    background:none; border:1px solid var(--line); border-radius:999px; padding:8px 16px;
+    cursor:pointer; font-size:.82rem; color:var(--ink); margin-top:4px;
+  }
+  .ghost-btn:hover{background:rgba(36,31,28,0.05);}
+ 
+  .divider{height:1px; background:var(--line); margin:22px 0;}
+ 
+  .option-row{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 6px;}
+  .chip{
+    border:1px solid var(--line); background:var(--panel); border-radius:999px;
+    padding:8px 16px; font-size:.86rem; cursor:pointer; color:var(--ink);
+  }
+  .chip-active{background:var(--navy); color:#fff; border-color:var(--navy);}
+  .text-input{
+    width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+    margin-top:8px; font-family:inherit; font-size:.9rem; background:#fff;
+  }
+ 
+  .toggle-row{margin:8px 0 4px; font-size:.95rem; display:flex; align-items:center; gap:8px;}
+  .toggle-row input{width:18px; height:18px; accent-color:var(--coral);}
+ 
+  .summary-card{margin-top:22px; border-top:2px dashed var(--line); padding-top:18px;}
+  .summary-row{display:flex; justify-content:space-between; font-size:.9rem; padding:5px 0; color:var(--ink-soft);}
+  .summary-row.total{font-size:1.15rem; color:var(--ink); font-weight:700; font-family:'Fraunces',serif; border-top:1px solid var(--line); margin-top:6px; padding-top:12px;}
+  .summary-row.points span:last-child{color:var(--teal); font-weight:600;}
+ 
+  .primary-btn{
+    width:100%; background:var(--coral); color:#fff; border:none; border-radius:12px;
+    padding:14px 18px; font-size:1rem; font-weight:600; cursor:pointer; margin-top:14px;
+    box-shadow:0 8px 18px rgba(232,93,76,0.28); transition:transform .12s ease;
+  }
+  .primary-btn:hover{transform:translateY(-1px);}
+  .primary-btn.secondary{background:var(--navy); box-shadow:0 8px 18px rgba(43,58,85,0.25);}
+ 
+  .preview-panel{text-align:center; position:sticky; top:96px;}
+  .preview-caption{font-size:.78rem; color:var(--ink-soft); margin-top:8px; letter-spacing:.3px;}
+  #preview svg{width:100%; max-width:280px; height:auto;}
+ 
+  /* ---------- Auth ---------- */
+  .auth-panel{max-width:420px; margin:20px auto; padding:34px;}
+  .auth-panel label{display:block; font-size:.85rem; font-weight:600; margin-top:14px; margin-bottom:6px;}
+  .auth-panel input{
+    width:100%; padding:11px 13px; border-radius:10px; border:1px solid var(--line);
+    font-family:inherit; font-size:.95rem; background:#fff;
+  }
+  .auth-panel .hint{font-size:.76rem; color:var(--ink-soft); margin-top:16px;}
+  .error-msg{background:#FBE3DF; color:#8C2F1E; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-top:12px;}
+  .flash-msg{background:#DEF0EA; color:#1E5C4F; padding:10px 12px; border-radius:8px; font-size:.85rem; margin-bottom:16px;}
+ 
+  /* ---------- Orders ---------- */
+  .order-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; box-shadow:var(--shadow); margin-bottom:16px; cursor:pointer;
+  }
+  .order-card:hover{border-color:var(--coral);}
+  .order-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;}
+  .order-id{font-family:'DM Mono', monospace; font-size:.85rem; color:var(--ink-soft);}
+  .badge{
+    padding:5px 12px; border-radius:999px; font-size:.76rem; font-weight:600; letter-spacing:.2px;
+  }
+  .badge-en_attente_paiement{background:#F6E3B4; color:#7A5B10;}
+  .badge-en_preparation{background:#CFE3E0; color:#215750;}
+  .badge-livree{background:#D6E8D0; color:#2E5B23;}
+ 
+  .order-detail{max-width:640px; margin:20px auto; padding:34px;}
+  .status-track{display:flex; justify-content:space-between; margin:26px 0; position:relative;}
+  .status-track::before{
+    content:''; position:absolute; top:13px; left:6%; right:6%; height:3px; background:var(--line); z-index:0;
+  }
+  .status-step{flex:1; text-align:center; position:relative; z-index:1; font-size:.76rem; color:var(--ink-soft);}
+  .status-dot{
+    width:26px; height:26px; border-radius:50%; background:var(--panel); border:3px solid var(--line);
+    margin:0 auto 8px;
+  }
+  .status-step.done .status-dot{background:var(--teal); border-color:var(--teal);}
+  .status-step.done{color:var(--ink); font-weight:600;}
+  .order-summary-line{display:flex; justify-content:space-between; padding:8px 0; font-size:.9rem; border-bottom:1px dashed var(--line);}
+ 
+  /* ---------- Admin ---------- */
+  .admin-table{width:100%; border-collapse:collapse; background:var(--panel); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+  .admin-table th, .admin-table td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.85rem;}
+  .admin-table th{background:var(--navy); color:#fff; font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.4px;}
+  .admin-table select{padding:6px 8px; border-radius:8px; border:1px solid var(--line); font-family:inherit;}
+  .swatch-row{display:flex; gap:3px;}
+  .swatch-dot{width:12px; height:12px; border-radius:50%;}
+ 
+  footer{
+    text-align:center; padding:26px; color:var(--ink-soft); font-size:.76rem; border-top:1px solid var(--line);
+    margin-top:40px;
+  }
+  .empty-state{text-align:center; padding:60px 20px; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+<div id="app"></div>
+ 
+<script>
+/* ============================= DATA / CONSTANTS ============================= */
+const PALETTE = ['#E85D4C','#2A9D8F','#E9B44C','#6B4C6B','#2B3A55','#EE6C4D','#98C1D9','#F4A261','#606C38','#BC6C25','#264653','#E76F51','#8AB17D','#D62828'];
+ 
+const BRAID_OPTIONS = [
+  {id:'coeur', label:'Cœur'},
+  {id:'mer', label:'Vagues (mer)'},
+  {id:'etoile', label:'Étoile'},
+  {id:'autre', label:'Autre'}
+];
+const BRAID_GLYPH = {coeur:'♥', mer:'≈', etoile:'★', autre:'✦'};
+ 
+const PENDANT_OPTIONS = [
+  {id:'coeur', label:'Cœur'},
+  {id:'etoile', label:'Étoile'},
+  {id:'papillon', label:'Papillon'},
+  {id:'fleur', label:'Fleur'},
+  {id:'autre', label:'Autre'}
+];
+const PENDANT_GLYPH = {coeur:'♥', etoile:'★', papillon:'🦋', fleur:'❀', autre:'✦'};
+ 
+const STATUS_LABELS = {
+  en_attente_paiement:'En attente de paiement',
+  en_preparation:'En préparation',
+  livree:'Livrée'
+};
+const STATUS_ORDER = ['en_attente_paiement','en_preparation','livree'];
+ 
+/* ============================= STATE ============================= */
+let state = {
+  view:'home',
+  currentUser:null, // {username, points, isAdmin}
+  config:{
+    threads:PALETTE.slice(0,6),
+    braid:'coeur', braidCustom:'',
+    pendant:false, pendantShape:'coeur', pendantCustom:''
+  },
+  authError:null,
+  flash:null,
+  myOrders:[],
+  currentOrderData:null,
+  currentOrderId:null,
+  allOrders:[],
+  loading:false
+};
+ 
+let pollTimer=null;
+ 
+/* ============================= STORAGE HELPERS ============================= */
+async function storageGet(key, shared){
+  try{
+    const r = await window.storage.get(key, shared);
+    return r ? r.value : null;
+  }catch(e){ return null; }
+}
+async function storageSet(key, value, shared){
+  try{ await window.storage.set(key, value, shared); return true; }
+  catch(e){ return false; }
+}
+async function storageList(prefix, shared){
+  try{ const r = await window.storage.list(prefix, shared); return r ? r.keys : []; }
+  catch(e){ return []; }
+}
+ 
+async function getUserRecord(username){
+  const v = await storageGet('user:'+username, true);
+  return v ? JSON.parse(v) : null;
+}
+async function ensureAdminAccount(){
+  const existing = await getUserRecord('admin');
+  if(!existing){
+    await storageSet('user:admin', JSON.stringify({username:'admin', password:'admin123', points:0, isAdmin:true}), true);
+  }
+}
+ 
+/* ============================= HELPERS ============================= */
+function calcPrice(cfg){
+  const base = 2.5, perThread = 0.6, pendantFee = 2.8;
+  let p = base + cfg.threads.length*perThread + (cfg.pendant ? pendantFee : 0);
+  return Math.round(p*100)/100;
+}
+function eur(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
+function braidLabel(cfg){
+  const found = BRAID_OPTIONS.find(o=>o.id===cfg.braid);
+  return cfg.braid==='autre' ? (cfg.braidCustom || 'Autre (à préciser)') : (found?found.label:'—');
+}
+function pendantLabel(cfg){
+  if(!cfg.pendant) return 'Aucun';
+  return cfg.pendantShape==='autre' ? (cfg.pendantCustom || 'Autre (à préciser)') : (PENDANT_OPTIONS.find(o=>o.id===cfg.pendantShape)||{}).label;
+}
+function fmtDate(iso){
+  try{ return new Date(iso).toLocaleString('fr-FR', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'}); }
+  catch(e){ return iso; }
+}
+ 
+function buildPreviewSVG(cfg){
+  const threads = cfg.threads.length ? cfg.threads : ['#ccc'];
+  const n = threads.length;
+  const stripeH = 16/n;
+  let rects='';
+  for(let i=0;i<n;i++){
+    rects += `<rect x="0" y="${(i*stripeH).toFixed(3)}" width="16" height="${(stripeH+0.4).toFixed(3)}" fill="${threads[i]}"/>`;
+  }
+  const braidChar = BRAID_GLYPH[cfg.braid] || '✦';
+  const pendantChar = cfg.pendant ? (PENDANT_GLYPH[cfg.pendantShape] || '✦') : '';
+  return `
+  <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aperçu du bracelet">
+    <defs>
+      <pattern id="threadPattern" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        ${rects}
+      </pattern>
+      <mask id="ringMask">
+        <circle cx="100" cy="100" r="85" fill="#fff"/>
+        <circle cx="100" cy="100" r="54" fill="#000"/>
+      </mask>
+      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#241F1C" flood-opacity="0.18"/>
+      </filter>
+    </defs>
+    <g filter="url(#softShadow)">
+      <rect x="0" y="0" width="200" height="200" fill="url(#threadPattern)" mask="url(#ringMask)"/>
+    </g>
+    <circle cx="100" cy="26" r="16" fill="#FFFDF8" stroke="#241F1C" stroke-opacity="0.15"/>
+    <text x="100" y="32" text-anchor="middle" font-size="18" fill="#2B3A55">${braidChar}</text>
+    ${cfg.pendant ? `
+      <line x1="100" y1="154" x2="100" y2="196" stroke="#C9A227" stroke-width="2"/>
+      <circle cx="100" cy="211" r="18" fill="#FFFDF8" stroke="#C9A227" stroke-width="2"/>
+      <text x="100" y="217" text-anchor="middle" font-size="18" fill="#C9A227">${pendantChar}</text>
+    ` : ''}
+  </svg>`;
+}
+ 
+/* ============================= NAVIGATION ============================= */
+function stopPolling(){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; } }
+ 
+async function goTo(view, opts={}){
+  stopPolling();
+  state.authError=null;
+  state.view=view;
+ 
+  if(view==='myorders'){
+    state.myOrders = await loadMyOrders();
+  }
+  if(view==='order'){
+    state.currentOrderId = opts.orderId || state.currentOrderId;
+    state.currentOrderData = await loadOrder(state.currentOrderId);
+    pollTimer = setInterval(async ()=>{
+      const fresh = await loadOrder(state.currentOrderId);
+      if(fresh && JSON.stringify(fresh)!==JSON.stringify(state.currentOrderData)){
+        state.currentOrderData = fresh;
+        render();
+      }
+    }, 4000);
+  }
+  if(view==='admin'){
+    state.allOrders = await loadAllOrders();
+  }
+  render();
+}
+ 
+async function loadMyOrders(){
+  if(!state.currentUser) return [];
+  const raw = await storageGet('user-orders:'+state.currentUser.username, true);
+  const ids = raw ? JSON.parse(raw) : [];
+  const orders=[];
+  for(const id of ids){
+    const o = await loadOrder(id);
+    if(o) orders.push(o);
+  }
+  orders.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+  return orders;
+}
+async function loadOrder(id){
+  if(!id) return null;
+  const raw = await storageGet('order:'+id, true);
+  return raw ? JSON.parse(raw) : null;
+}
+async function loadAllOrders(){
+  const keys = await storageList('order:', true);
+  const orders=[];
+  for(const k of keys){
+    const raw = await storageGet(k, true);
+    if(raw) orders.push(JSON.parse(raw));
+  }
+  orders.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+  return orders;
+}
+ 
+/* ============================= ACTIONS ============================= */
+async function placeOrder(){
+  if(!state.currentUser){
+    state.flash=null;
+    state.authError='Connectez-vous ou créez un compte pour valider votre commande.';
+    await goTo('login');
+    return;
+  }
+  const cfg = state.config;
+  const price = calcPrice(cfg);
+  const id = 'CMD-' + Date.now().toString(36).toUpperCase();
+  const order = {
+    id, username: state.currentUser.username,
+    threads: cfg.threads.slice(),
+    braid: cfg.braid, braidCustom: cfg.braidCustom||'',
+    pendant: cfg.pendant,
+    pendantShape: cfg.pendant ? cfg.pendantShape : null,
+    pendantCustom: cfg.pendant ? (cfg.pendantCustom||'') : '',
+    price,
+    status:'en_attente_paiement',
+    createdAt: new Date().toISOString()
+  };
+  await storageSet('order:'+id, JSON.stringify(order), true);
+ 
+  const idxRaw = await storageGet('user-orders:'+state.currentUser.username, true);
+  const idx = idxRaw ? JSON.parse(idxRaw) : [];
+  idx.push(id);
+  await storageSet('user-orders:'+state.currentUser.username, JSON.stringify(idx), true);
+ 
+  const pointsEarned = Math.floor(price/2);
+  const userRec = await getUserRecord(state.currentUser.username);
+  if(userRec){
+    userRec.points = (userRec.points||0) + pointsEarned;
+    await storageSet('user:'+state.currentUser.username, JSON.stringify(userRec), true);
+    state.currentUser.points = userRec.points;
+  }
+  await goTo('order', {orderId:id});
+}
+ 
+async function handleLogin(username, password){
+  const user = await getUserRecord(username);
+  if(!user || user.password !== password){
+    state.authError = 'Identifiants incorrects.';
+    render();
+    return;
+  }
+  state.currentUser = {username:user.username, points:user.points||0, isAdmin:!!user.isAdmin};
+  state.flash = `Bienvenue, ${user.username} !`;
+  await goTo('home');
+}
+async function handleRegister(username, password){
+  if(!username || !password){ state.authError='Merci de remplir tous les champs.'; render(); return; }
+  const existing = await getUserRecord(username);
+  if(existing){ state.authError='Ce nom d’utilisateur existe déjà.'; render(); return; }
+  const user = {username, password, points:0, isAdmin:false};
+  await storageSet('user:'+username, JSON.stringify(user), true);
+  state.currentUser = {username, points:0, isAdmin:false};
+  state.flash = `Compte créé, bienvenue ${username} !`;
+  await goTo('home');
+}
+function handleLogout(){
+  state.currentUser=null;
+  state.flash='Vous êtes déconnecté(e).';
+  goTo('home');
+}
+async function handleAdminStatusChange(orderId, newStatus){
+  const raw = await storageGet('order:'+orderId, true);
+  if(!raw) return;
+  const order = JSON.parse(raw);
+  order.status = newStatus;
+  await storageSet('order:'+orderId, JSON.stringify(order), true);
+  state.allOrders = await loadAllOrders();
+  render();
+}
+ 
+/* ============================= RENDER: HEADER ============================= */
+function renderHeader(){
+  const u = state.currentUser;
+  return `
+  <header class="site-header">
+    <div class="brand" data-action="go-home">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="brand-name">Nœuds &amp; Fils</div>
+        <div class="brand-tag">Bracelets brésiliens sur mesure</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a class="nav-link ${state.view==='home'?'active':''}" data-action="go-home" href="#">Personnaliser</a>
+      ${u ? `<a class="nav-link ${state.view==='myorders'?'active':''}" data-action="go-myorders" href="#">Mes commandes</a>` : ''}
+      ${u && u.isAdmin ? `<a class="nav-link ${state.view==='admin'?'active':''}" data-action="go-admin" href="#">Admin</a>` : ''}
+      ${u ? `
+        <span class="nav-user">
+          <span class="points-pill">★ ${u.points} pt${u.points>1?'s':''}</span>
+          ${u.username}
+        </span>
+        <a class="nav-link" data-action="logout" href="#">Déconnexion</a>
+      ` : `
+        <a class="nav-link ${state.view==='login'?'active':''}" data-action="go-login" href="#">Connexion</a>
+        <a class="nav-link ${state.view==='register'?'active':''}" data-action="go-register" href="#">Créer un compte</a>
+      `}
+    </nav>
+  </header>`;
+}
+ 
+/* ============================= RENDER: HOME ============================= */
+function renderHome(){
+  const cfg = state.config;
+  const price = calcPrice(cfg);
+  return `
+  <section class="hero">
+    <span class="eyebrow">Atelier sur mesure</span>
+    <h1>Composez votre bracelet brésilien</h1>
+    <p>Choisissez le nombre de fils, leurs couleurs, la forme du tressage, et ajoutez un pendentif si le cœur vous en dit. Chaque bracelet est nommé fil après fil.</p>
+  </section>
+ 
+  ${state.flash ? `<div class="flash-msg">${state.flash}</div>` : ''}
+ 
+  <div class="workshop">
+    <div class="panel">
+      <label class="field-label" for="thread-count">Nombre de fils : <strong>${cfg.threads.length}</strong> / 14</label>
+      <input type="range" id="thread-count" min="1" max="14" value="${cfg.threads.length}" data-action="set-thread-count">
+ 
+      <div class="thread-grid">
+        ${cfg.threads.map((c,i)=>`
+          <label class="thread-chip">
+            <input type="color" value="${c}" data-action="set-thread-color" data-index="${i}">
+            <span>Fil ${i+1}</span>
+          </label>`).join('')}
+      </div>
+      <button type="button" class="ghost-btn" data-action="randomize-colors">🎲 Couleurs aléatoires</button>
+ 
+      <div class="divider"></div>
+ 
+      <label class="field-label">Forme du tressage</label>
+      <div class="option-row">
+        ${BRAID_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.braid===o.id?'chip-active':''}" data-action="select-braid" data-value="${o.id}">${o.label}</button>`).join('')}
+      </div>
+      ${cfg.braid==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme souhaitée" value="${cfg.braidCustom||''}" data-action="set-braid-custom">` : ''}
+ 
+      <div class="divider"></div>
+ 
+      <div class="toggle-row">
+        <input type="checkbox" id="pendant-toggle" data-action="toggle-pendant" ${cfg.pendant?'checked':''}>
+        <label for="pendant-toggle">Ajouter un pendentif (+ ${eur(2.8)})</label>
+      </div>
+      ${cfg.pendant ? `
+        <div class="option-row">
+          ${PENDANT_OPTIONS.map(o=>`<button type="button" class="chip ${cfg.pendantShape===o.id?'chip-active':''}" data-action="select-pendant-shape" data-value="${o.id}">${o.label}</button>`).join('')}
+        </div>
+        ${cfg.pendantShape==='autre' ? `<input class="text-input" type="text" placeholder="Précisez la forme du pendentif" value="${cfg.pendantCustom||''}" data-action="set-pendant-custom">` : ''}
+      ` : ''}
+ 
+      <div class="summary-card">
+        <div class="summary-row"><span>Fils</span><span>${cfg.threads.length}</span></div>
+        <div class="summary-row"><span>Tressage</span><span>${braidLabel(cfg)}</span></div>
+        <div class="summary-row"><span>Pendentif</span><span>${pendantLabel(cfg)}</span></div>
+        <div class="summary-row total"><span>Total</span><span>${eur(price)}</span></div>
+        <div class="summary-row points"><span>Points fidélité gagnés</span><span>+${Math.floor(price/2)} pt</span></div>
+        <button class="primary-btn" data-action="place-order">Commander</button>
+      </div>
+    </div>
+ 
+    <div class="panel preview-panel">
+      <div id="preview">${buildPreviewSVG(cfg)}</div>
+      <div class="preview-caption">Aperçu indicatif du rendu final</div>
+    </div>
+  </div>`;
+}
+ 
+/* ============================= RENDER: AUTH ============================= */
+function renderLogin(){
+  return `
+  <div class="panel auth-panel">
+    <h2>Connexion</h2>
+    ${state.authError ? `<div class="error-msg">${state.authError}</div>` : ''}
+    <form data-action="login-submit">
+      <label>Nom d'utilisateur</label>
+      <input name="username" required autocomplete="username">
+      <label>Mot de passe</label>
+      <input name="password" type="password" required autocomplete="current-password">
+      <button class="primary-btn" type="submit">Se connecter</button>
+    </form>
+    <p class="hint">Pas encore de compte ? <a href="#" data-action="go-register">Créer un compte</a></p>
+    <p class="hint">Démo administrateur : identifiant <strong>admin</strong> / mot de passe <strong>admin123</strong>.</p>
+  </div>`;
+}
+function renderRegister(){
+  return `
+  <div class="panel auth-panel">
+    <h2>Créer un compte</h2>
+    ${state.authError ? `<div class="error-msg">${state.authError}</div>` : ''}
+    <form data-action="register-submit">
+      <label>Nom d'utilisateur</label>
+      <input name="username" required autocomplete="username">
+      <label>Mot de passe</label>
+      <input name="password" type="password" required autocomplete="new-password">
+      <button class="primary-btn" type="submit">Créer mon compte</button>
+    </form>
+    <p class="hint">Déjà inscrit(e) ? <a href="#" data-action="go-login">Se connecter</a></p>
+  </div>`;
+}
+ 
+/* ============================= RENDER: MY ORDERS ============================= */
+function renderMyOrders(){
+  if(!state.myOrders.length){
+    return `<div class="empty-state"><h2>Aucune commande pour l'instant</h2><p>Composez votre premier bracelet depuis « Personnaliser ».</p></div>`;
+  }
+  return `
+  <h2 style="margin:20px 0;">Mes commandes</h2>
+  ${state.myOrders.map(o=>`
+    <div class="order-card" data-action="view-order" data-id="${o.id}">
+      <div class="order-top">
+        <span class="order-id">${o.id}</span>
+        <span class="badge badge-${o.status}">${STATUS_LABELS[o.status]}</span>
+      </div>
+      <div style="margin-top:8px; color:var(--ink-soft); font-size:.88rem;">
+        ${o.threads.length} fils · ${o.pendant ? 'avec pendentif' : 'sans pendentif'} · ${eur(o.price)} · ${fmtDate(o.createdAt)}
+      </div>
+    </div>
+  `).join('')}`;
+}
+ 
+/* ============================= RENDER: ORDER DETAIL ============================= */
+function renderOrder(){
+  const o = state.currentOrderData;
+  if(!o){
+    return `<div class="empty-state"><h2>Commande introuvable</h2><a href="#" data-action="go-home">Retour à l'accueil</a></div>`;
+  }
+  const stepIndex = STATUS_ORDER.indexOf(o.status);
+  return `
+  <div class="panel order-detail">
+    <span class="eyebrow">Confirmation de commande</span>
+    <h2>${o.id}</h2>
+    <p style="color:var(--ink-soft); font-size:.85rem;">Passée le ${fmtDate(o.createdAt)}</p>
+ 
+    <div class="status-track">
+      ${STATUS_ORDER.map((s,i)=>`
+        <div class="status-step ${i<=stepIndex?'done':''}">
+          <div class="status-dot"></div>
+          ${STATUS_LABELS[s]}
+        </div>`).join('')}
+    </div>
+ 
+    <div id="preview" style="max-width:220px; margin:0 auto 18px;">${buildPreviewSVG({threads:o.threads, braid:o.braid, pendant:o.pendant, pendantShape:o.pendantShape})}</div>
+ 
+    <div class="order-summary-line"><span>Nombre de fils</span><span>${o.threads.length}</span></div>
+    <div class="order-summary-line"><span>Tressage</span><span>${o.braid==='autre' ? (o.braidCustom||'Autre') : (BRAID_OPTIONS.find(b=>b.id===o.braid)||{}).label}</span></div>
+    <div class="order-summary-line"><span>Pendentif</span><span>${o.pendant ? (o.pendantShape==='autre' ? (o.pendantCustom||'Autre') : (PENDANT_OPTIONS.find(p=>p.id===o.pendantShape)||{}).label) : 'Aucun'}</span></div>
+    <div class="order-summary-line"><span>Total payé</span><span>${eur(o.price)}</span></div>
+    <div class="order-summary-line"><span>Points fidélité gagnés</span><span>+${Math.floor(o.price/2)} pt</span></div>
+ 
+    <p style="font-size:.78rem; color:var(--ink-soft); margin-top:16px;">Le statut se met à jour automatiquement toutes les quelques secondes.</p>
+    <button class="primary-btn secondary" data-action="go-home">Composer un nouveau bracelet</button>
+  </div>`;
+}
+ 
+/* ============================= RENDER: ADMIN ============================= */
+function renderAdmin(){
+  if(!state.currentUser || !state.currentUser.isAdmin){
+    return `<div class="empty-state"><h2>Accès réservé</h2><p>Cette page est réservée aux administrateurs.</p></div>`;
+  }
+  if(!state.allOrders.length){
+    return `<div class="empty-state"><h2>Aucune commande enregistrée</h2></div>`;
+  }
+  return `
+  <h2 style="margin:20px 0;">Toutes les commandes</h2>
+  <div style="overflow-x:auto;">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Commande</th><th>Client</th><th>Fils</th><th>Tressage</th><th>Pendentif</th><th>Prix</th><th>Date</th><th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${state.allOrders.map(o=>`
+        <tr>
+          <td class="mono">${o.id}</td>
+          <td>${o.username}</td>
+          <td><div class="swatch-row">${o.threads.map(c=>`<span class="swatch-dot" style="background:${c}"></span>`).join('')}</div></td>
+          <td>${o.braid==='autre' ? (o.braidCustom||'Autre') : (BRAID_OPTIONS.find(b=>b.id===o.braid)||{}).label}</td>
+          <td>${o.pendant ? (o.pendantShape==='autre' ? (o.pendantCustom||'Autre') : (PENDANT_OPTIONS.find(p=>p.id===o.pendantShape)||{}).label) : '—'}</td>
+          <td>${eur(o.price)}</td>
+          <td>${fmtDate(o.createdAt)}</td>
+          <td>
+            <select data-action="admin-status-change" data-id="${o.id}">
+              ${STATUS_ORDER.map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}
+            </select>
+          </td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>
+  </div>`;
+}
+ 
+/* ============================= MASTER RENDER ============================= */
+function render(){
+  let body='';
+  if(state.view==='home') body = renderHome();
+  else if(state.view==='login') body = renderLogin();
+  else if(state.view==='register') body = renderRegister();
+  else if(state.view==='myorders') body = renderMyOrders();
+  else if(state.view==='order') body = renderOrder();
+  else if(state.view==='admin') body = renderAdmin();
+ 
+  document.getElementById('app').innerHTML = `
+    ${renderHeader()}
+    <main>${body}</main>
+    <footer>
+      Démo pédagogique — les comptes et commandes créés ici sont stockés côté serveur et visibles par toute personne ouvrant cette page.
+      N'utilisez pas de mot de passe réel. Compte administrateur de démonstration : <strong>admin</strong> / <strong>admin123</strong>.
+    </footer>`;
+}
+ 
+/* ============================= EVENT DELEGATION ============================= */
+document.addEventListener('click', async (e)=>{
+  const target = e.target.closest('[data-action]');
+  if(!target) return;
+  const action = target.dataset.action;
+ 
+  if(['go-home','go-login','go-register','go-myorders','go-admin','logout','randomize-colors',
+      'select-braid','select-pendant-shape','toggle-pendant','place-order','view-order'].includes(action)
+      || target.tagName==='A' || target.closest('.order-card') ){
+    e.preventDefault();
+  }
+ 
+  switch(action){
+    case 'go-home': await goTo('home'); break;
+    case 'go-login': state.authError=null; await goTo('login'); break;
+    case 'go-register': state.authError=null; await goTo('register'); break;
+    case 'go-myorders': await goTo('myorders'); break;
+    case 'go-admin': await goTo('admin'); break;
+    case 'logout': handleLogout(); break;
+    case 'randomize-colors':
+      state.config.threads = state.config.threads.map(()=> PALETTE[Math.floor(Math.random()*PALETTE.length)]);
+      render();
+      break;
+    case 'select-braid':
+      state.config.braid = target.dataset.value;
+      render();
+      break;
+    case 'select-pendant-shape':
+      state.config.pendantShape = target.dataset.value;
+      render();
+      break;
+    case 'place-order':
+      state.loading=true;
+      await placeOrder();
+      break;
+    case 'view-order': {
+      const card = target.closest('[data-action="view-order"]') || target;
+      await goTo('order', {orderId: card.dataset.id});
+      break;
+    }
+  }
+});
+ 
+document.addEventListener('change', async (e)=>{
+  const target = e.target;
+  if(target.id==='thread-count'){
+    const n = parseInt(target.value,10);
+    const threads = state.config.threads.slice(0,n);
+    while(threads.length < n){ threads.push(PALETTE[threads.length % PALETTE.length]); }
+    state.config.threads = threads;
+    render();
+    return;
+  }
+  if(target.dataset && target.dataset.action==='set-thread-color'){
+    const i = parseInt(target.dataset.index,10);
+    state.config.threads[i] = target.value;
+    render();
+    return;
+  }
+  if(target.dataset && target.dataset.action==='set-braid-custom'){
+    state.config.braidCustom = target.value;
+    return;
+  }
+  if(target.dataset && target.dataset.action==='set-pendant-custom'){
+    state.config.pendantCustom = target.value;
+    return;
+  }
+  if(target.dataset && target.dataset.action==='toggle-pendant'){
+    state.config.pendant = target.checked;
+    render();
+    return;
+  }
+  if(target.dataset && target.dataset.action==='admin-status-change'){
+    await handleAdminStatusChange(target.dataset.id, target.value);
+    return;
+  }
+});
+ 
+document.addEventListener('submit', async (e)=>{
+  const target = e.target.closest('[data-action]');
+  if(!target) return;
+  e.preventDefault();
+  const action = target.dataset.action;
+  const fd = new FormData(target);
+  if(action==='login-submit'){
+    await handleLogin((fd.get('username')||'').trim(), fd.get('password')||'');
+  }
+  if(action==='register-submit'){
+    await handleRegister((fd.get('username')||'').trim(), fd.get('password')||'');
+  }
+});
+ 
+/* ============================= INIT ============================= */
+(async function init(){
+  await ensureAdminAccount();
+  render();
+})();
+</script>
+</body>
+</html>
+ 
